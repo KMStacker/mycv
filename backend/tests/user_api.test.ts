@@ -110,7 +110,7 @@ describe('user registration endpoint', () => {
         .expect(403)
     }
   })
-  
+
   test('normal user cannot fetch user list', async () => {
     await api.get('/api/users').set('Authorization', `Bearer ${userToken}`).expect(403)
   })

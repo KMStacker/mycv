@@ -56,8 +56,8 @@ usersRouter.put(
         username: user.username,
         role: user.role,
         fullName: user.fullName,
-            email: user.email,
-            phone: user.phone,
+        email: user.email,
+        phone: user.phone,
         commentingDisabled: user.commentingDisabled,
         commentCount: count
       })
@@ -88,7 +88,10 @@ usersRouter.post(
       const savedUser = await User.create({
         username: username.trim(),
         passwordHash,
-        fullName: fullName && typeof fullName === 'string' && fullName.trim() !== '' ? fullName.trim() : null,
+        fullName:
+          fullName && typeof fullName === 'string' && fullName.trim() !== ''
+            ? fullName.trim()
+            : null,
         email: email && typeof email === 'string' && email.trim() !== '' ? email.trim() : null,
         phone: phone && typeof phone === 'string' && phone.trim() !== '' ? phone.trim() : null
       })

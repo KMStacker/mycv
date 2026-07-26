@@ -774,7 +774,9 @@ const AdminPage = ({ user }: AdminPageProps): JSX.Element => {
                 {visibleUserInfos.includes(u.id) ? 'Hide Info' : 'Show Info'}
               </button>
               {visibleUserInfos.includes(u.id) && (
-                <div style={{ fontSize: '0.85rem', color: 'var(--text-highlight)', margin: '5px 0' }}>
+                <div
+                  style={{ fontSize: '0.85rem', color: 'var(--text-highlight)', margin: '5px 0' }}
+                >
                   {u.fullName || u.email || u.phone ? (
                     <>
                       {u.fullName && <div>Name: {u.fullName}</div>}
@@ -782,7 +784,9 @@ const AdminPage = ({ user }: AdminPageProps): JSX.Element => {
                       {u.phone && <div>Phone: {u.phone}</div>}
                     </>
                   ) : (
-                    <div style={{ fontStyle: 'italic', opacity: 0.7 }}>No optional information provided.</div>
+                    <div style={{ opacity: 0.7 }}>
+                      No optional information provided.
+                    </div>
                   )}
                 </div>
               )}
