@@ -119,4 +119,41 @@ describe('AdminPage', () => {
       )
     })
   })
+
+  test('admin can toggle user contact information visibility', async () => {
+    const mockUsersWithDetails = [
+      {
+        id: 1,
+        username: 'userinfo',
+        role: 'USER',
+        commentingDisabled: false,
+        commentCount: 2,
+        fullName: 'User User',
+        email: 'user@example.com',
+        phone: '0401234567'
+      }
+    ]
+
+    vi.mocked(axios.get).mockImplementation((url: string) => {
+      if (url.includes('users')) return Promise.resolve({ data: mockUsersWithDetails })
+      return Promise.resolve({ data: [] })
+    })
+
+    render(<AdminPage user={mockUser} />)
+
+    expect(await screen.findByText('userinfo')).toBeInTheDocument()
+    expect(screen.queryByText('Email: user@example.com')).not.toBeInTheDocument()
+
+    const showInfoBtn = screen.getByRole('button', { name: 'Show Info' })
+    await userEvent.click(showInfoBtn)
+
+    expect(screen.getByText('Name: User User')).toBeInTheDocument()
+    expect(screen.getByText('Email: user@example.com')).toBeInTheDocument()
+    expect(screen.getByText('Phone: 0401234567')).toBeInTheDocument()
+
+    const hideInfoBtn = screen.getByRole('button', { name: 'Hide Info' })
+    await userEvent.click(hideInfoBtn)
+
+    expect(screen.queryByText('Email: user@example.com')).not.toBeInTheDocument()
+  })
 })

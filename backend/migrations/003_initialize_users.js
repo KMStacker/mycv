@@ -22,6 +22,18 @@ module.exports = {
         allowNull: false,
         defaultValue: 'USER'
       },
+      full_name: {
+        type: DataTypes.TEXT,
+        allowNull: true
+      },
+      email: {
+        type: DataTypes.TEXT,
+        allowNull: true
+      },
+      phone: {
+        type: DataTypes.TEXT,
+        allowNull: true
+      },
       commenting_disabled: {
         type: DataTypes.BOOLEAN,
         allowNull: false,

@@ -11,6 +11,7 @@ const RegisterForm = ({ handleLogin, onSuccess, onCancel }: RegisterFormProps): 
   const [regUsername, setRegUsername] = useState<string>('')
   const [regPassword, setRegPassword] = useState<string>('')
   const [regPasswordAgain, setRegPasswordAgain] = useState<string>('')
+  const [fullName, setFullName] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [phone, setPhone] = useState<string>('')
   const [showOptional, setShowOptional] = useState<boolean>(false)
@@ -26,7 +27,10 @@ const RegisterForm = ({ handleLogin, onSuccess, onCancel }: RegisterFormProps): 
     try {
       await axios.post('/api/users', {
         username: regUsername,
-        password: regPassword
+        password: regPassword,
+        fullName: fullName ? fullName.trim() : undefined,
+        email: email ? email.trim() : undefined,
+        phone: phone ? phone.trim() : undefined
       })
       setShowModal(true)
       setError(null)
@@ -43,6 +47,7 @@ const RegisterForm = ({ handleLogin, onSuccess, onCancel }: RegisterFormProps): 
     setRegUsername('')
     setRegPassword('')
     setRegPasswordAgain('')
+    setFullName('')
     setEmail('')
     setPhone('')
     if (onSuccess) {
@@ -103,6 +108,14 @@ const RegisterForm = ({ handleLogin, onSuccess, onCancel }: RegisterFormProps): 
           </button>
           {showOptional && (
             <div style={{ marginTop: '10px' }}>
+              <div style={{ marginBottom: '10px' }}>
+                <input
+                  type="text"
+                  value={fullName}
+                  onChange={({ target }) => setFullName(target.value)}
+                  placeholder="Full name (optional)"
+                />
+              </div>
               <div style={{ marginBottom: '10px' }}>
                 <input
                   type="email"

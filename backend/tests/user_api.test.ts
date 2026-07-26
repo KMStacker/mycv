@@ -91,6 +91,26 @@ describe('user registration endpoint', () => {
     expect(response.body.commentingDisabled).toBe(true)
   })
 
+  test('admin can delete a normal user account', async () => {
+    await api
+      .delete(`/api/users/${normalUser.id}`)
+      .set('Authorization', `Bearer ${adminToken}`)
+      .expect(204)
+
+    const usersInDb = await User.findAll()
+    expect(usersInDb).toHaveLength(1)
+  })
+
+  test('admin cannot delete another admin account', async () => {
+    const adminInDb = await User.findOne({ where: { role: 'ADMIN' } })
+    if (adminInDb) {
+      await api
+        .delete(`/api/users/${adminInDb.id}`)
+        .set('Authorization', `Bearer ${adminToken}`)
+        .expect(403)
+    }
+  })
+  
   test('normal user cannot fetch user list', async () => {
     await api.get('/api/users').set('Authorization', `Bearer ${userToken}`).expect(403)
   })

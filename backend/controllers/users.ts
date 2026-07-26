@@ -19,6 +19,9 @@ usersRouter.get(
             id: u.id,
             username: u.username,
             role: u.role,
+            fullName: u.fullName,
+            email: u.email,
+            phone: u.phone,
             commentingDisabled: u.commentingDisabled,
             commentCount: count
           }
@@ -52,6 +55,9 @@ usersRouter.put(
         id: user.id,
         username: user.username,
         role: user.role,
+        fullName: user.fullName,
+            email: user.email,
+            phone: user.phone,
         commentingDisabled: user.commentingDisabled,
         commentCount: count
       })
@@ -65,7 +71,7 @@ usersRouter.post(
   '/',
   async (request: express.Request, response: express.Response, next: express.NextFunction) => {
     try {
-      const { username, password } = request.body
+      const { username, password, fullName, email, phone } = request.body
 
       if (!username || typeof username !== 'string' || username.trim().length < 3) {
         return response.status(400).json({ error: 'username must be at least 3 characters long' })
@@ -81,7 +87,10 @@ usersRouter.post(
       const passwordHash = await bcrypt.hash(password, saltRounds)
       const savedUser = await User.create({
         username: username.trim(),
-        passwordHash
+        passwordHash,
+        fullName: fullName && typeof fullName === 'string' && fullName.trim() !== '' ? fullName.trim() : null,
+        email: email && typeof email === 'string' && email.trim() !== '' ? email.trim() : null,
+        phone: phone && typeof phone === 'string' && phone.trim() !== '' ? phone.trim() : null
       })
 
       return response.status(201).json({
@@ -89,6 +98,26 @@ usersRouter.post(
         username: savedUser.username,
         role: savedUser.role
       })
+    } catch (error) {
+      return next(error)
+    }
+  }
+)
+
+usersRouter.delete(
+  '/:id',
+  adminAuthorization,
+  async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+    try {
+      const user = await User.findByPk(Number(request.params.id))
+      if (!user) {
+        return response.status(404).json({ error: 'user not found' })
+      }
+      if (user.role === 'ADMIN') {
+        return response.status(403).json({ error: 'cannot delete admin user' })
+      }
+      await user.destroy()
+      return response.status(204).end()
     } catch (error) {
       return next(error)
     }

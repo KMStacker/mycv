@@ -6,6 +6,9 @@ export class User extends Model {
   declare username: string
   declare passwordHash: string
   declare role: string
+  declare fullName: string | null
+  declare email: string | null
+  declare phone: string | null
   declare commentingDisabled: boolean
 }
 
@@ -29,6 +32,18 @@ User.init(
       type: DataTypes.TEXT,
       allowNull: false,
       defaultValue: 'USER'
+    },
+    fullName: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    email: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    phone: {
+      type: DataTypes.TEXT,
+      allowNull: true
     },
     commentingDisabled: {
       type: DataTypes.BOOLEAN,

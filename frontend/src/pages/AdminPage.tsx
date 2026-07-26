@@ -32,6 +32,9 @@ export interface UserWithStats {
   id: number
   username: string
   role: string
+  fullName?: string | null
+  email?: string | null
+  phone?: string | null
   commentingDisabled: boolean
   commentCount: number
 }
@@ -48,7 +51,7 @@ interface AdminPageProps {
 
 const AdminPage = ({ user }: AdminPageProps): JSX.Element => {
   const [adminUsers, setAdminUsers] = useState<UserWithStats[]>([])
-
+  const [visibleUserInfos, setVisibleUserInfos] = useState<number[]>([])
   const [projects, setProjects] = useState<Project[]>([])
   const [newProject, setNewProject] = useState({
     title: '',
@@ -345,6 +348,32 @@ const AdminPage = ({ user }: AdminPageProps): JSX.Element => {
         error.response?.data?.error ||
           'Failed to update profile. Ensure database is seeded and admin token is valid.'
       )
+    }
+  }
+
+  const handleDeleteUser = async (userId: number): Promise<void> => {
+    if (!user) return
+    if (
+      window.confirm(
+        'Are you sure you want to delete this user? All associated comments will also be removed.'
+      )
+    ) {
+      try {
+        await axios.delete(`/api/users/${userId}`, {
+          headers: { Authorization: `Bearer ${user.token}` }
+        })
+        setAdminUsers(adminUsers.filter((u) => u.id !== userId))
+      } catch (err: any) {
+        console.error(err)
+      }
+    }
+  }
+
+  const toggleUserInfo = (userId: number): void => {
+    if (visibleUserInfos.includes(userId)) {
+      setVisibleUserInfos(visibleUserInfos.filter((id) => id !== userId))
+    } else {
+      setVisibleUserInfos([...visibleUserInfos, userId])
     }
   }
 
@@ -737,14 +766,43 @@ const AdminPage = ({ user }: AdminPageProps): JSX.Element => {
               ) : (
                 <span style={{ color: 'green' }}>Active</span>
               )}
+              <button
+                className="button"
+                style={{ marginLeft: '10px' }}
+                onClick={() => toggleUserInfo(u.id)}
+              >
+                {visibleUserInfos.includes(u.id) ? 'Hide Info' : 'Show Info'}
+              </button>
+              {visibleUserInfos.includes(u.id) && (
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-highlight)', margin: '5px 0' }}>
+                  {u.fullName || u.email || u.phone ? (
+                    <>
+                      {u.fullName && <div>Name: {u.fullName}</div>}
+                      {u.email && <div>Email: {u.email}</div>}
+                      {u.phone && <div>Phone: {u.phone}</div>}
+                    </>
+                  ) : (
+                    <div style={{ fontStyle: 'italic', opacity: 0.7 }}>No optional information provided.</div>
+                  )}
+                </div>
+              )}
               {u.role !== 'ADMIN' && (
-                <button
-                  className="button"
-                  style={{ marginLeft: '10px' }}
-                  onClick={() => void handleToggleCommentStatus(u.id)}
-                >
-                  {u.commentingDisabled ? 'Unban User' : 'Ban User'}
-                </button>
+                <>
+                  <button
+                    className="button"
+                    style={{ marginLeft: '10px' }}
+                    onClick={() => void handleToggleCommentStatus(u.id)}
+                  >
+                    {u.commentingDisabled ? 'Unban User' : 'Ban User'}
+                  </button>
+                  <button
+                    className="button"
+                    style={{ marginLeft: '5px' }}
+                    onClick={() => void handleDeleteUser(u.id)}
+                  >
+                    Delete User
+                  </button>
+                </>
               )}
             </li>
           ))}
