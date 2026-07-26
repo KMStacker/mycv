@@ -5,7 +5,6 @@ import bcrypt from 'bcrypt'
 import User from './models/user'
 import * as logger from './utils/logger'
 
-
 const createAdminAccount = async (): Promise<void> => {
   try {
     // connecting to DB
@@ -20,29 +19,30 @@ const createAdminAccount = async (): Promise<void> => {
       return
     }
 
-    logger.info('Checking if admin account already exists...')
-    const existingAdmin = await User.findOne({ where: { role: 'ADMIN' } })
-    if (existingAdmin) {
-      logger.info('Admin account already exists, will stop creating admin account')
-      return
-    }
-
     logger.info('Password hashing...')
     const saltRounds = 10
     const hashedPassword = await bcrypt.hash(password, saltRounds)
     logger.info('Password hashed... ')
 
-    logger.info('Making admin...')
-    await User.create({
-      username: 'admin',
-      passwordHash: hashedPassword,
-      role: 'ADMIN'
-    })
+    logger.info('Checking if admin account already exists...')
+    let existingAdmin = await User.findOne({ where: { username: 'admin' } })
+    if (existingAdmin) {
+      logger.info('Admin account exists, updating password hash...')
+      existingAdmin.passwordHash = hashedPassword
+      existingAdmin.role = 'ADMIN'
+      await existingAdmin.save()
+      logger.info('Admin account updated successfully!')
+    } else {
+      logger.info('Creating admin account...')
+      await User.create({
+        username: 'admin',
+        passwordHash: hashedPassword,
+        role: 'ADMIN'
+      })
+      logger.info('Admin saved...')
+    }
 
-    logger.info('Admin saved...')
-
-    logger.info(' All done and dusted for the sake of the admin account!')
-
+    logger.info('All done and dusted for the sake of the admin account!')
   } catch (error: any) {
     logger.error('Error creating admin account:', error.message)
   } finally {
