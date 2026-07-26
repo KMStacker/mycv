@@ -46,7 +46,7 @@ const SkillsPage = (): JSX.Element => {
   return (
     <div className="content-window showcase-container">
       <h1 className="showcase-header">Skills Showcase</h1>
-      
+
       <div className="showcase-layout">
         <div className="showcase-sidebar">
           {skills.map((skill, index) => (
@@ -62,25 +62,53 @@ const SkillsPage = (): JSX.Element => {
 
         <div className="showcase-main">
           <div className="showcase-nav-wrapper">
-            <button className="button" onClick={handlePrevious} style={{ padding: '12px 16px', fontSize: '1.2rem' }}>
+            <button
+              className="button"
+              onClick={handlePrevious}
+              style={{ padding: '12px 16px', fontSize: '1.2rem' }}
+            >
               &larr;
             </button>
-            
-            <div key={currentSkill.id} className="animated-slide-card showcase-card" style={{ justifyContent: 'center', boxSizing: 'border-box' }}>
+
+            <div
+              key={currentSkill.id}
+              className="animated-slide-card showcase-card"
+              style={{ justifyContent: 'center', boxSizing: 'border-box' }}
+            >
               <h3 className="showcase-title">{currentSkill.name}</h3>
-              <p style={{ fontSize: '1rem', color: '#f1f5f9', lineHeight: '1.6', marginTop: '1rem', marginBottom: 0 }}>
+              <p
+                style={{
+                  fontSize: '1rem',
+                  color: '#f1f5f9',
+                  lineHeight: '1.6',
+                  marginTop: '1rem',
+                  marginBottom: 0
+                }}
+              >
                 <strong className="showcase-tech-label">Level:</strong> {currentSkill.level}
               </p>
-              <p style={{ fontSize: '1rem', color: '#f1f5f9', lineHeight: '1.6', marginTop: '0.25rem', marginBottom: '1rem' }}>
+              <p
+                style={{
+                  fontSize: '1rem',
+                  color: '#f1f5f9',
+                  lineHeight: '1.6',
+                  marginTop: '0.25rem',
+                  marginBottom: '1rem'
+                }}
+              >
                 <strong className="showcase-tech-label">Used on:</strong> {currentSkill.usedOn}
               </p>
             </div>
-            
-            <button className="button" onClick={handleNext} style={{ padding: '12px 16px', fontSize: '1.2rem' }}>
+
+            <button
+              className="button"
+              onClick={handleNext}
+              style={{ padding: '12px 16px', fontSize: '1.2rem' }}
+            >
               &rarr;
             </button>
           </div>
-          
+
           <div className="showcase-nav-lists">
             {skills.map((_, index) => (
               <button

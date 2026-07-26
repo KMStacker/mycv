@@ -38,7 +38,13 @@ const GuestbookPage = ({ user, handleLogin }: GuestbookPageProps): JSX.Element =
   const handlePostComment = async (event: React.SyntheticEvent): Promise<void> => {
     event.preventDefault()
     try {
-      const savedComment = await commentService.create(newComment, isPublic, guestName, user ? user.token : null, replyingTo)
+      const savedComment = await commentService.create(
+        newComment,
+        isPublic,
+        guestName,
+        user ? user.token : null,
+        replyingTo
+      )
       setComments([savedComment, ...comments])
       setNewComment('')
       setGuestName('')
@@ -52,27 +58,39 @@ const GuestbookPage = ({ user, handleLogin }: GuestbookPageProps): JSX.Element =
 
   const handleDeleteComment = async (id: number): Promise<void> => {
     if (!user || user.role !== 'ADMIN') return
-    
+
     if (window.confirm('Are you sure you want to delete this comment?')) {
       try {
         await commentService.remove(id, user.token)
-        setComments(comments.filter(comment => comment.id !== id))
+        setComments(comments.filter((comment) => comment.id !== id))
       } catch (err: any) {
         setError(err.response?.data?.error || 'Failed to delete comment')
       }
     }
   }
 
-  const renderCommentThread = (parentId: number | null = null, depth: number = 0): JSX.Element | null => {
-    const threadComments = comments.filter(c => c.parentId === parentId)
+  const renderCommentThread = (
+    parentId: number | null = null,
+    depth: number = 0
+  ): JSX.Element | null => {
+    const threadComments = comments.filter((c) => c.parentId === parentId)
     if (threadComments.length === 0) return null
 
     return (
-      <ul style={{ paddingLeft: depth === 0 ? '20px' : '40px', marginTop: depth === 0 ? '0' : '10px' }}>
-        {threadComments.map(comment => (
+      <ul
+        style={{
+          paddingLeft: depth === 0 ? '20px' : '40px',
+          marginTop: depth === 0 ? '0' : '10px'
+        }}
+      >
+        {threadComments.map((comment) => (
           <li key={comment.id} style={{ marginBottom: '10px' }}>
             <strong>{comment.user ? comment.user.username : `${comment.guestName}`}</strong>
-            {!comment.isPublic && <span style={{ fontStyle: 'italic', fontSize: '0.8rem', marginLeft: '5px' }}>[Private]</span>}
+            {!comment.isPublic && (
+              <span style={{ fontStyle: 'italic', fontSize: '0.8rem', marginLeft: '5px' }}>
+                [Private]
+              </span>
+            )}
             : {comment.content}
             <button
               className="button"
@@ -104,25 +122,39 @@ const GuestbookPage = ({ user, handleLogin }: GuestbookPageProps): JSX.Element =
     <div className="content-window">
       <div className="info-box">
         <h1>Guestbook</h1>
-        
+
         <p style={{ fontStyle: 'italic', marginBottom: '15px' }}>
           Feel free to leave a public comment, or a private message for the admin's eyes only!
         </p>
-        <br/>
+        <br />
       </div>
 
       {replyingTo && (
-        <div className="info-box" style={{ marginBottom: '15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{ color: 'var(--text-highlight)' }}>
-            Replying to a comment...
-          </span>
-          <button className="button" style={{ margin: 0, padding: '4px 10px' }} onClick={() => setReplyingTo(null)}>Cancel Reply</button>
+        <div
+          className="info-box"
+          style={{
+            marginBottom: '15px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}
+        >
+          <span style={{ color: 'var(--text-highlight)' }}>Replying to a comment...</span>
+          <button
+            className="button"
+            style={{ margin: 0, padding: '4px 10px' }}
+            onClick={() => setReplyingTo(null)}
+          >
+            Cancel Reply
+          </button>
         </div>
       )}
 
       {user ? (
         <form onSubmit={handlePostComment}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '15px' }}>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '15px' }}
+          >
             <div style={{ display: 'flex', gap: '10px' }}>
               <input
                 type="text"
@@ -133,14 +165,12 @@ const GuestbookPage = ({ user, handleLogin }: GuestbookPageProps): JSX.Element =
                 required
                 style={{ width: '300px' }}
               />
-              <button type="submit" className="button" style={{ margin: 0 }}>Post</button>
+              <button type="submit" className="button" style={{ margin: 0 }}>
+                Post
+              </button>
             </div>
             <label style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-              <input
-                type="checkbox"
-                checked={!isPublic}
-                onChange={() => setIsPublic(!isPublic)}
-              />
+              <input type="checkbox" checked={!isPublic} onChange={() => setIsPublic(!isPublic)} />
               Make comment private
             </label>
           </div>
@@ -151,9 +181,15 @@ const GuestbookPage = ({ user, handleLogin }: GuestbookPageProps): JSX.Element =
             <div>
               <p>In order to leave a comment, choose one:</p>
               <div style={{ display: 'flex', gap: '10px' }}>
-                <button className="button" onClick={() => setViewMode('LOGIN')}>Login</button>
-                <button className="button" onClick={() => setViewMode('REGISTER')}>Sign up</button>
-                <button className="button" onClick={() => setViewMode('GUEST')}>Leave comment as guest</button>
+                <button className="button" onClick={() => setViewMode('LOGIN')}>
+                  Login
+                </button>
+                <button className="button" onClick={() => setViewMode('REGISTER')}>
+                  Sign up
+                </button>
+                <button className="button" onClick={() => setViewMode('GUEST')}>
+                  Leave comment as guest
+                </button>
               </div>
             </div>
           )}
@@ -178,7 +214,14 @@ const GuestbookPage = ({ user, handleLogin }: GuestbookPageProps): JSX.Element =
             <form onSubmit={handlePostComment}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <div>
-                  <span style={{ fontSize: '0.9rem', color: 'gray', display: 'block', marginBottom: '5px' }}>
+                  <span
+                    style={{
+                      fontSize: '0.9rem',
+                      color: 'gray',
+                      display: 'block',
+                      marginBottom: '5px'
+                    }}
+                  >
                     Your name will start with Guest_ followed by a unique ID (+ optional ending).
                   </span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
@@ -203,7 +246,9 @@ const GuestbookPage = ({ user, handleLogin }: GuestbookPageProps): JSX.Element =
                     required
                     style={{ width: '300px' }}
                   />
-                  <button type="submit" className="button" style={{ margin: 0 }}>Post</button>
+                  <button type="submit" className="button" style={{ margin: 0 }}>
+                    Post
+                  </button>
                 </div>
                 <label style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                   <input
@@ -213,7 +258,14 @@ const GuestbookPage = ({ user, handleLogin }: GuestbookPageProps): JSX.Element =
                   />
                   Make comment private
                 </label>
-                <button type="button" className="button" onClick={() => setViewMode('NONE')} style={{ width: '100px' }}>Cancel</button>
+                <button
+                  type="button"
+                  className="button"
+                  onClick={() => setViewMode('NONE')}
+                  style={{ width: '100px' }}
+                >
+                  Cancel
+                </button>
               </div>
             </form>
           )}

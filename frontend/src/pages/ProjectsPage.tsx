@@ -47,7 +47,7 @@ const ProjectsPage = (): JSX.Element => {
   return (
     <div className="content-window showcase-container">
       <h1 className="showcase-header">Projects Showcase</h1>
-      
+
       <div className="showcase-layout">
         <div className="showcase-sidebar">
           {projects.map((project, index) => (
@@ -63,25 +63,30 @@ const ProjectsPage = (): JSX.Element => {
 
         <div className="showcase-main">
           <div className="showcase-nav-wrapper">
-            <button className="button" onClick={handlePrevious} style={{ padding: '12px 16px', fontSize: '1.2rem' }}>
+            <button
+              className="button"
+              onClick={handlePrevious}
+              style={{ padding: '12px 16px', fontSize: '1.2rem' }}
+            >
               &larr;
             </button>
-            
+
             <div key={currentProject.id} className="animated-slide-card showcase-card">
               <div>
                 <h3 className="showcase-title">{currentProject.title}</h3>
                 <p className="showcase-description">{currentProject.description}</p>
                 <p className="showcase-tech">
-                  <strong className="showcase-tech-label">Technologies:</strong> {currentProject.technologies}
+                  <strong className="showcase-tech-label">Technologies:</strong>{' '}
+                  {currentProject.technologies}
                 </p>
               </div>
-              
+
               <div>
                 {currentProject.githubUrl && (
-                  <a 
-                    href={currentProject.githubUrl} 
-                    className="button" 
-                    target="_blank" 
+                  <a
+                    href={currentProject.githubUrl}
+                    className="button"
+                    target="_blank"
                     rel="noopener noreferrer"
                     style={{ display: 'inline-block', marginTop: '10px', marginBottom: '5px' }}
                   >
@@ -90,12 +95,16 @@ const ProjectsPage = (): JSX.Element => {
                 )}
               </div>
             </div>
-            
-            <button className="button" onClick={handleNext} style={{ padding: '12px 16px', fontSize: '1.2rem' }}>
+
+            <button
+              className="button"
+              onClick={handleNext}
+              style={{ padding: '12px 16px', fontSize: '1.2rem' }}
+            >
               &rarr;
             </button>
           </div>
-          
+
           <div className="showcase-nav-lists">
             {projects.map((_, index) => (
               <button

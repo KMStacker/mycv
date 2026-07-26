@@ -41,9 +41,13 @@ const LoginForm = ({ handleLogin, onSuccess, onCancel }: LoginFormProps): JSX.El
           />
         </div>
         <div className="inline-header-row">
-          <button type="submit" className="button">Login</button>
+          <button type="submit" className="button">
+            Login
+          </button>
           {onCancel && (
-            <button type="button" className="button" onClick={onCancel}>Cancel</button>
+            <button type="button" className="button" onClick={onCancel}>
+              Cancel
+            </button>
           )}
         </div>
       </form>

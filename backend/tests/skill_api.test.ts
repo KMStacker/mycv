@@ -103,10 +103,7 @@ describe('skills api validation', () => {
       usedOn: 'idk where'
     }
 
-    await api
-      .post('/api/skills')
-      .send(newSkill)
-      .expect(401)
+    await api.post('/api/skills').send(newSkill).expect(401)
   })
 
   test('skill creation fails without token', async () => {
@@ -116,10 +113,7 @@ describe('skills api validation', () => {
       usedOn: 'idk where'
     }
 
-    await api
-      .post('/api/skills')
-      .send(newSkill)
-      .expect(401)
+    await api.post('/api/skills').send(newSkill).expect(401)
   })
 
   test('admin can reorder skills', async () => {

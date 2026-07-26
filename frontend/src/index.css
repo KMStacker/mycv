@@ -1,6 +1,20 @@
 :root {
-  --bg-gradient: linear-gradient(120deg, #0b0f19 0%, #1b2a47 25%, #3a506b 50%, #1b2a47 75%, #0b0f19 100%);
-  --btn-bg: linear-gradient(to right, #1b2a47 0%, #4f6d8f 25%, #7a98b8 48%, #4f6d8f 75%, #1b2a47 100%);
+  --bg-gradient: linear-gradient(
+    120deg,
+    #0b0f19 0%,
+    #1b2a47 25%,
+    #3a506b 50%,
+    #1b2a47 75%,
+    #0b0f19 100%
+  );
+  --btn-bg: linear-gradient(
+    to right,
+    #1b2a47 0%,
+    #4f6d8f 25%,
+    #7a98b8 48%,
+    #4f6d8f 75%,
+    #1b2a47 100%
+  );
   --btn-border: #3a506b;
   --btn-text: #f1f5f9;
   --btn-text-hover: #ffffff;
@@ -24,8 +38,22 @@
 }
 
 body.theme-golden {
-  --bg-gradient: linear-gradient(120deg, #47452e 0%, #b89742 25%, #a7a395 50%, #cfb53b 75%, #47452e 100%);
-  --btn-bg: linear-gradient(to right, #cfaa5b 0%, #e4e0b2 25%, #f6f5f3 48%, #f7f4d2 75%, #e3c88e 100%);
+  --bg-gradient: linear-gradient(
+    120deg,
+    #47452e 0%,
+    #b89742 25%,
+    #a7a395 50%,
+    #cfb53b 75%,
+    #47452e 100%
+  );
+  --btn-bg: linear-gradient(
+    to right,
+    #cfaa5b 0%,
+    #e4e0b2 25%,
+    #f6f5f3 48%,
+    #f7f4d2 75%,
+    #e3c88e 100%
+  );
   --btn-border: #aa771c;
   --btn-text: #1a1610;
   --btn-text-hover: #0a0908;
@@ -49,8 +77,27 @@ body.theme-golden {
 }
 
 body.theme-rainbow {
-  --bg-gradient: linear-gradient(120deg, rgba(248, 69, 69, 0.6) 0%, rgb(249, 156, 62) 15%, rgb(241, 241, 54) 30%, rgb(80, 241, 80) 45%, rgba(116, 116, 243, 0.6) 60%, rgb(153, 99, 192) 75%, rgb(187, 82, 232) 100%);
-  --btn-bg: linear-gradient(to right, #ff0000 0%, #ff7f00 5%, #ffff00 15%, #00ff00 25%, #0000ff 39%, #4b0082, #9400d3, #ff0000);
+  --bg-gradient: linear-gradient(
+    120deg,
+    rgba(248, 69, 69, 0.6) 0%,
+    rgb(249, 156, 62) 15%,
+    rgb(241, 241, 54) 30%,
+    rgb(80, 241, 80) 45%,
+    rgba(116, 116, 243, 0.6) 60%,
+    rgb(153, 99, 192) 75%,
+    rgb(187, 82, 232) 100%
+  );
+  --btn-bg: linear-gradient(
+    to right,
+    #ff0000 0%,
+    #ff7f00 5%,
+    #ffff00 15%,
+    #00ff00 25%,
+    #0000ff 39%,
+    #4b0082,
+    #9400d3,
+    #ff0000
+  );
   --btn-border: rgb(255, 255, 255, 0.4);
   --btn-text: #28352b;
   --btn-text-hover: #ffffff;
@@ -73,7 +120,6 @@ body.theme-rainbow {
     rgba(185, 65, 185, 0.95) 48%,
     rgba(61, 131, 236, 0.95) 65%,
     rgba(245, 82, 53, 0.95) 85%
-    
   );
 }
 
@@ -110,7 +156,8 @@ body::after {
 }
 
 @keyframes sparkleOne {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.1;
   }
   50% {
@@ -119,7 +166,8 @@ body::after {
 }
 
 @keyframes sparkleTwo {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.6;
   }
   50% {
@@ -128,6 +176,10 @@ body::after {
 }
 
 @keyframes rainbowGlow {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }

@@ -45,9 +45,7 @@ beforeEach(async () => {
 
 describe('projects api', () => {
   test('get all projects returns empty list initially', async () => {
-    const response = await api
-      .get('/api/projects')
-      .expect(200)
+    const response = await api.get('/api/projects').expect(200)
     expect(response.body).toHaveLength(0)
   })
 
@@ -58,10 +56,7 @@ describe('projects api', () => {
       technologies: 'Node, React',
       githubUrl: 'https://github.com'
     }
-    await api
-      .post('/api/projects')
-      .send(newProject)
-      .expect(401)
+    await api.post('/api/projects').send(newProject).expect(401)
   })
 
   test('create project succeeds with valid admin token', async () => {
@@ -100,8 +95,20 @@ describe('projects api', () => {
   })
 
   test('admin can reorder projects', async () => {
-    const p1 = await Project.create({ title: 'P1', description: '', technologies: '', githubUrl: '', displayOrder: 0 })
-    const p2 = await Project.create({ title: 'P2', description: '', technologies: '', githubUrl: '', displayOrder: 1 })
+    const p1 = await Project.create({
+      title: 'P1',
+      description: '',
+      technologies: '',
+      githubUrl: '',
+      displayOrder: 0
+    })
+    const p2 = await Project.create({
+      title: 'P2',
+      description: '',
+      technologies: '',
+      githubUrl: '',
+      displayOrder: 1
+    })
 
     const response = await api
       .put('/api/projects/reorder')

@@ -1,7 +1,7 @@
 import './App.css'
 import { useState, useEffect, JSX } from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import HomePage  from './pages/HomePage'
+import HomePage from './pages/HomePage'
 import ProjectsPage from './pages/ProjectsPage'
 import SkillsPage from './pages/SkillsPage'
 import AdminPage from './pages/AdminPage'
@@ -65,12 +65,22 @@ const App = (): JSX.Element => {
       <SparkleOverlay />
       <div className="nav-bar">
         <div>
-          <Link className="button" to="/">Home</Link>
-          <Link className="button" to="/projects">Projects</Link>
-          <Link className="button" to="/skills">Skills</Link>
-          <Link className="button" to="/guestbook">Guestbook</Link>
+          <Link className="button" to="/">
+            Home
+          </Link>
+          <Link className="button" to="/projects">
+            Projects
+          </Link>
+          <Link className="button" to="/skills">
+            Skills
+          </Link>
+          <Link className="button" to="/guestbook">
+            Guestbook
+          </Link>
           {user && user.role === 'ADMIN' && (
-            <Link className="button" to="/admin">Admin</Link>
+            <Link className="button" to="/admin">
+              Admin
+            </Link>
           )}
         </div>
         <div className="separate-boxes">
@@ -78,13 +88,19 @@ const App = (): JSX.Element => {
             <div className="login-form">
               <p>
                 Welcome, {user.username}! &nbsp;
-                <button className="button" onClick={handleLogout}>Logout</button>
+                <button className="button" onClick={handleLogout}>
+                  Logout
+                </button>
               </p>
             </div>
           ) : (
             <>
-              <button className="button" type="button" onClick={() => setShowLoginModal(true)}>Login</button>
-              <button className="button" type="button" onClick={() => setShowRegisterModal(true)}>Register</button>
+              <button className="button" type="button" onClick={() => setShowLoginModal(true)}>
+                Login
+              </button>
+              <button className="button" type="button" onClick={() => setShowRegisterModal(true)}>
+                Register
+              </button>
             </>
           )}
         </div>
@@ -94,16 +110,16 @@ const App = (): JSX.Element => {
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/skills" element={<SkillsPage />} />
         <Route path="/admin" element={<AdminPage user={user} />} />
-        <Route path="/guestbook" element={<GuestbookPage user={user} handleLogin={handleLogin} />} />
+        <Route
+          path="/guestbook"
+          element={<GuestbookPage user={user} handleLogin={handleLogin} />}
+        />
       </Routes>
 
       {showLoginModal && (
         <div className="modal-overlay" onClick={() => setShowLoginModal(false)}>
           <div className="modal" onClick={(event) => event.stopPropagation()}>
-            <LoginForm
-              handleLogin={handleLogin}
-              onSuccess={() => setShowLoginModal(false)}
-            />
+            <LoginForm handleLogin={handleLogin} onSuccess={() => setShowLoginModal(false)} />
           </div>
         </div>
       )}
@@ -122,6 +138,5 @@ const App = (): JSX.Element => {
     </BrowserRouter>
   )
 }
-
 
 export default App

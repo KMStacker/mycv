@@ -9,7 +9,6 @@ on:
     types: [opened, synchronize]
 
 jobs:
-
   build_and_test:
     runs-on: ubuntu-22.04
     env:

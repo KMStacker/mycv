@@ -3,8 +3,11 @@ import jwt from 'jsonwebtoken'
 import { CustomRequest } from './tokenExtractor'
 import * as config from '../utils/config'
 
-
-export const adminAuthorization = (request: CustomRequest, _response: Response, next: NextFunction) => {
+export const adminAuthorization = (
+  request: CustomRequest,
+  _response: Response,
+  next: NextFunction
+) => {
   try {
     const token = request.token
     if (!token) {
@@ -23,7 +26,6 @@ export const adminAuthorization = (request: CustomRequest, _response: Response, 
     }
 
     next()
-
   } catch (error) {
     next(error)
   }

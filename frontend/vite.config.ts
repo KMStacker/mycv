@@ -8,13 +8,13 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'http://localhost:3001',
-        changeOrigin: true,
-      },
+        changeOrigin: true
+      }
     }
   },
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: './testSetup.ts',
-  },
+    setupFiles: './testSetup.ts'
+  }
 })

@@ -64,7 +64,13 @@ describe('GuestbookPage', () => {
     await userEvent.type(input, 'Super to be here!')
     await userEvent.click(postButton)
 
-    expect(commentService.create).toHaveBeenCalledWith('Super to be here!', true, '', 'user-token', null)
+    expect(commentService.create).toHaveBeenCalledWith(
+      'Super to be here!',
+      true,
+      '',
+      'user-token',
+      null
+    )
     expect(await screen.findByText(/Super to be here!/)).toBeInTheDocument()
   })
 })

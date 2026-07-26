@@ -1,0 +1,8 @@
+/node_modules
+/frontend/dist
+/backend/build
+/backend/dist
+/backend/coverage
+/playwright-report
+/test-results
+package-lock.json

@@ -45,9 +45,7 @@ beforeEach(async () => {
 
 describe('profile api', () => {
   test('get profile returns 404 when no profile exists', async () => {
-    await api
-      .get('/api/profile')
-      .expect(404)
+    await api.get('/api/profile').expect(404)
   })
 
   test('get profile returns profile data when profile exists', async () => {

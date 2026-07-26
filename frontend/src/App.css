@@ -10,7 +10,9 @@
   margin: 15px;
   border-radius: 12px;
   border: 1px solid var(--box-border);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 10px var(--box-shadow-glow);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.6),
+    0 0 10px var(--box-shadow-glow);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,7 +34,9 @@
   margin: 15px;
   border-radius: 12px;
   border: 1px solid var(--box-border);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 15px var(--box-shadow-glow);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 15px var(--box-shadow-glow);
   display: inline-block;
 }
 
@@ -115,7 +119,6 @@
   }
 }
 
-
 /* ==========================================================================
    2. BUTTONS & INTERACTIVE ELEMENTS
    ========================================================================== */
@@ -131,8 +134,13 @@
   border: 1px solid var(--btn-border);
   margin: 5px;
   text-decoration: none;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  transition: background-position 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition:
+    background-position 0.5s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   cursor: pointer;
   display: inline-block;
   font-weight: 600;
@@ -163,7 +171,6 @@
   box-shadow: 0 0 8px var(--box-shadow-glow);
 }
 
-
 /* ==========================================================================
    3. FORMS & INPUTS
    ========================================================================== */
@@ -182,7 +189,9 @@
   font-weight: 550;
 }
 
-.login-form input, .feature-editor input, .theme-input {
+.login-form input,
+.feature-editor input,
+.theme-input {
   background: var(--input-bg);
   border: 1px solid var(--input-border);
   border-radius: 4px;
@@ -190,7 +199,9 @@
   padding: 6px;
 }
 
-.login-form input:focus, .feature-editor input:focus, .theme-input:focus {
+.login-form input:focus,
+.feature-editor input:focus,
+.theme-input:focus {
   outline: none;
   border-color: var(--input-border-focus);
   box-shadow: 0 0 5px var(--box-shadow-glow);
@@ -200,7 +211,6 @@
   display: flex;
   gap: 5px;
 }
-
 
 /* ==========================================================================
    4. MODALS & OVERLAYS
@@ -231,7 +241,6 @@
   width: 90%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
-
 
 /* ==========================================================================
    5. PROJECTS & SKILLS SHOWCASE
@@ -365,7 +374,9 @@
   border-radius: 50%;
   border: none;
   background-color: rgba(255, 255, 255, 0.25);
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
   transform: scale(1);
   cursor: pointer;
   padding: 0;
@@ -397,7 +408,6 @@
   background-size: 300% auto;
   animation: cardColorShift 0.6s ease-out forwards;
 }
-
 
 /* ==========================================================================
    6. ADMIN PANEL & FEATURE EDITOR

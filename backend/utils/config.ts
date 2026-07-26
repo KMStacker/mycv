@@ -6,9 +6,8 @@ if (!PORT) {
   console.error('PORT is not defined in .env')
 }
 
-export const DATABASE_URL = process.env.NODE_ENV === 'test'
-  ? process.env.TEST_DATABASE_URL
-  : process.env.DATABASE_URL
+export const DATABASE_URL =
+  process.env.NODE_ENV === 'test' ? process.env.TEST_DATABASE_URL : process.env.DATABASE_URL
 if (!DATABASE_URL) {
   console.error('DATABASE_URL is not defined in .env')
 }

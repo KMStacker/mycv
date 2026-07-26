@@ -36,10 +36,11 @@ const seedDatabase = async (): Promise<void> => {
       logger.info('Seeding initial projects...')
       await Project.bulkCreate([
         {
-          title: 'My-CV Fullstack Application',
-          description: 'A comprehensive portfolio web application with a custom admin panel, reactive layout themes, and a visitor guestbook.',
-          technologies: 'React, TypeScript, Node.js, Express, PostgreSQL',
-          githubUrl: 'https://github.com/KMStacker/project_fullstack'
+          title: 'MyCV Fullstack Application',
+          description:
+            'A comprehensive portfolio web application with a custom admin panel, reactive layout themes, and a visitor guestbook.',
+          technologies: 'React, TypeScript, Node.js, Express, PostgreSQL, Docker',
+          githubUrl: 'https://github.com/KMStacker/mycv'
         },
         {
           title: 'Party Planner App',
@@ -83,7 +84,6 @@ const seedDatabase = async (): Promise<void> => {
           level: 'Advanced',
           usedOn: 'Frontend & Backend'
         }
-
       ])
       logger.info('Skills seeded successfully.')
     } else {

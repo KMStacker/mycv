@@ -56,40 +56,81 @@ const RegisterForm = ({ handleLogin, onSuccess, onCancel }: RegisterFormProps): 
       {showModal && (
         <div className="info-box">
           <p>Registration successful! Would you like to log in now?</p>
-          <button type="button" className="button" onClick={() => void handleModalChoice(true)}>Yes</button>
-          <button type="button" className="button" onClick={() => void handleModalChoice(false)}>No</button>
+          <button type="button" className="button" onClick={() => void handleModalChoice(true)}>
+            Yes
+          </button>
+          <button type="button" className="button" onClick={() => void handleModalChoice(false)}>
+            No
+          </button>
         </div>
       )}
       <form onSubmit={handleRegister}>
         <div className="editor-section" style={{ marginBottom: '10px' }}>
-          <input type="text" value={regUsername} onChange={({ target }) => setRegUsername(target.value)} placeholder="Username" required />
+          <input
+            type="text"
+            value={regUsername}
+            onChange={({ target }) => setRegUsername(target.value)}
+            placeholder="Username"
+            required
+          />
         </div>
         <div className="editor-section" style={{ marginBottom: '10px' }}>
-          <input type="password" value={regPassword} onChange={({ target }) => setRegPassword(target.value)} placeholder="Password" required />
+          <input
+            type="password"
+            value={regPassword}
+            onChange={({ target }) => setRegPassword(target.value)}
+            placeholder="Password"
+            required
+          />
         </div>
         <div className="editor-section" style={{ marginBottom: '10px' }}>
-          <input type="password" value={regPasswordAgain} onChange={({ target }) => setRegPasswordAgain(target.value)} placeholder="Password again" required />
+          <input
+            type="password"
+            value={regPasswordAgain}
+            onChange={({ target }) => setRegPasswordAgain(target.value)}
+            placeholder="Password again"
+            required
+          />
         </div>
         <div className="editor-section" style={{ marginBottom: '10px' }}>
-          <button type="button" className="button" onClick={() => setShowOptional(!showOptional)} style={{ cursor: 'pointer', margin: 0 }}>
+          <button
+            type="button"
+            className="button"
+            onClick={() => setShowOptional(!showOptional)}
+            style={{ cursor: 'pointer', margin: 0 }}
+          >
             {showOptional ? 'Hide optional information' : 'Show optional information'}
           </button>
           {showOptional && (
             <div style={{ marginTop: '10px' }}>
               <div style={{ marginBottom: '10px' }}>
-                <input type="email" value={email} onChange={({ target }) => setEmail(target.value)} placeholder="Email (optional)" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={({ target }) => setEmail(target.value)}
+                  placeholder="Email (optional)"
+                />
               </div>
               <div style={{ marginBottom: '10px' }}>
-                <input type="text" value={phone} onChange={({ target }) => setPhone(target.value)} placeholder="Phone number (optional)" />
+                <input
+                  type="text"
+                  value={phone}
+                  onChange={({ target }) => setPhone(target.value)}
+                  placeholder="Phone number (optional)"
+                />
               </div>
             </div>
           )}
         </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <div className="inline-header-row">
-          <button type="submit" className="button" style={{ margin: 0 }}>Register</button>
+          <button type="submit" className="button" style={{ margin: 0 }}>
+            Register
+          </button>
           {onCancel && (
-            <button type="button" className="button" onClick={onCancel}>Cancel</button>
+            <button type="button" className="button" onClick={onCancel}>
+              Cancel
+            </button>
           )}
         </div>
       </form>

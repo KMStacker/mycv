@@ -6,7 +6,7 @@ test.describe('Admin Dashboard Flow', () => {
   let sharedPage: Page
   const adminUsername = 'admin'
   if (!process.env.ADMIN_PSW) {
-  throw new Error('ADMIN_PSW environment variable is missing')
+    throw new Error('ADMIN_PSW environment variable is missing')
   }
   const adminPassword: string = process.env.ADMIN_PSW
   const title = `Project_${Date.now()}`

@@ -41,23 +41,37 @@ const HomePage = ({ user, theme, setTheme }: HomePageProps): JSX.Element => {
   return (
     <div className="content-window showcase-container home-container">
       <h1 className="showcase-header">Welcome to My CV!</h1>
-      
+
       <div className="home-layout">
         <div className="home-sidebar">
           <div className="info-box home-profile-card">
             <h3>About Me</h3>
-            <p>
-              {profile?.aboutText || 'No info yet...'}
-            </p>
+            <p>{profile?.aboutText || 'No info yet...'}</p>
           </div>
-          
+
           <div className="info-box home-contact-card">
             <h3>Contact Information</h3>
             <ul className="contact-list">
-              {profile?.name && <li><strong>Name:</strong> {profile.name}</li>}
-              {profile?.email && <li><strong>Email:</strong> {profile.email}</li>}
-              {profile?.phone && <li><strong>Phone:</strong> {profile.phone}</li>}
-              {profile?.location && <li><strong>Location:</strong> {profile.location}</li>}
+              {profile?.name && (
+                <li>
+                  <strong>Name:</strong> {profile.name}
+                </li>
+              )}
+              {profile?.email && (
+                <li>
+                  <strong>Email:</strong> {profile.email}
+                </li>
+              )}
+              {profile?.phone && (
+                <li>
+                  <strong>Phone:</strong> {profile.phone}
+                </li>
+              )}
+              {profile?.location && (
+                <li>
+                  <strong>Location:</strong> {profile.location}
+                </li>
+              )}
               {profile?.githubUrl && (
                 <li>
                   <strong>GitHub:</strong>{' '}
@@ -71,7 +85,11 @@ const HomePage = ({ user, theme, setTheme }: HomePageProps): JSX.Element => {
                   </a>
                 </li>
               )}
-              {profile?.status && <li><strong>Status:</strong> {profile.status}</li>}
+              {profile?.status && (
+                <li>
+                  <strong>Status:</strong> {profile.status}
+                </li>
+              )}
               {!profile && <li>No info yet...</li>}
             </ul>
           </div>
@@ -81,8 +99,14 @@ const HomePage = ({ user, theme, setTheme }: HomePageProps): JSX.Element => {
           <div className="info-box" style={{ paddingBottom: 20 }}>
             <p>Here you will find dedicated showcases of my projects and technical skills.</p>
             <p>Feel free to explore the site and check out the guestbook.</p>
-            <p>You can sign up to unlock extra layout features, or choose to post comments freely as a guest.</p>
-            <p>By signing up, you can try out the custom "Golden" and "Rainbow" themes on this site below!</p>
+            <p>
+              You can sign up to unlock extra layout features, or choose to post comments freely as
+              a guest.
+            </p>
+            <p>
+              By signing up, you can try out the custom "Golden" and "Rainbow" themes on this site
+              below!
+            </p>
           </div>
           {user && (
             <div className="theme-selector-group">

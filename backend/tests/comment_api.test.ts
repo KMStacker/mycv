@@ -85,10 +85,7 @@ describe('comments api', () => {
       content: 'Unauthenticated comment'
     }
 
-    const response = await api
-      .post('/api/comments')
-      .send(newComment)
-      .expect(201)
+    const response = await api.post('/api/comments').send(newComment).expect(201)
 
     expect(response.body.guestName).toMatch(/^Guest_/)
 
@@ -118,7 +115,7 @@ describe('comments api', () => {
       .delete(`/api/comments/${comment.id}`)
       .set('Authorization', `Bearer ${adminToken}`)
       .expect(204)
-    
+
     const commentsAtEnd = await Comment.findAll()
     expect(commentsAtEnd).toHaveLength(0)
   })

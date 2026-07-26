@@ -49,10 +49,7 @@ describe('user registration endpoint', () => {
       password: 'newpassword'
     }
 
-    const response = await api
-      .post('/api/users')
-      .send(newUser)
-      .expect(201)
+    const response = await api.post('/api/users').send(newUser).expect(201)
 
     expect(response.body.username).toBe('newuser')
     expect(response.body.role).toBe('USER')
@@ -60,7 +57,7 @@ describe('user registration endpoint', () => {
     const usersInDb = await User.findAll()
     expect(usersInDb).toHaveLength(3)
 
-    const usernames = usersInDb.map(u => u.username)
+    const usernames = usersInDb.map((u) => u.username)
     expect(usernames).toContain('newuser')
   })
 
@@ -70,10 +67,7 @@ describe('user registration endpoint', () => {
       password: 'testpassword'
     }
 
-    const response = await api
-      .post('/api/users')
-      .send(invalidUser)
-      .expect(400)
+    const response = await api.post('/api/users').send(invalidUser).expect(400)
 
     expect(response.body.error).toContain('username must be at least 3 characters long')
   })
@@ -98,10 +92,7 @@ describe('user registration endpoint', () => {
   })
 
   test('normal user cannot fetch user list', async () => {
-    await api
-      .get('/api/users')
-      .set('Authorization', `Bearer ${userToken}`)
-      .expect(403)
+    await api.get('/api/users').set('Authorization', `Bearer ${userToken}`).expect(403)
   })
 })
 
