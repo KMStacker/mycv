@@ -96,40 +96,34 @@ const HomePage = ({ user, theme, setTheme }: HomePageProps): JSX.Element => {
         </div>
 
         <div className="home-main">
-          <div className="info-box" style={{ paddingBottom: 20 }}>
-            <p>Here you will find dedicated showcases of my projects and technical skills.</p>
-            <p>Feel free to explore the site and check out the guestbook.</p>
-            <p>
-              You can sign up to unlock extra layout features, or choose to post comments freely as
-              a guest.
-            </p>
-            <p>
-              By signing up, you can try out the custom "Golden" and "Rainbow" themes on this site
-              below!
-            </p>
+          <div className="info-box">
+            <p>Feel free to look around and leave a message in the Guestbook!</p>
+            <p>Sign in to unlock and try custom visual themes below!</p>
           </div>
-          {user && (
-            <div className="theme-selector-group">
-              <button
-                className={`button ${theme === 'nightsky' ? 'active-theme-btn' : ''}`}
-                onClick={() => setTheme('nightsky')}
-              >
-                Night Sky
-              </button>
-              <button
-                className={`button ${theme === 'golden' ? 'active-theme-btn' : ''}`}
-                onClick={() => setTheme('golden')}
-              >
-                Golden
-              </button>
-              <button
-                className={`button ${theme === 'rainbow' ? 'active-theme-btn' : ''}`}
-                onClick={() => setTheme('rainbow')}
-              >
-                Rainbow
-              </button>
-            </div>
-          )}
+          <div className="theme-selector-group">
+            <button
+              className={`button ${theme === 'nightsky' ? 'active-theme-btn' : ''}`}
+              onClick={() => setTheme('nightsky')}
+            >
+              Night Sky
+            </button>
+            <button
+              className={`button ${theme === 'golden' ? 'active-theme-btn' : ''} ${!user ? 'disabled-theme-btn' : ''}`}
+              onClick={() => user && setTheme('golden')}
+              disabled={!user}
+              title={!user ? 'Sign in to unlock Golden theme' : ''}
+            >
+              Golden
+            </button>
+            <button
+              className={`button ${theme === 'rainbow' ? 'active-theme-btn' : ''} ${!user ? 'disabled-theme-btn' : ''}`}
+              onClick={() => user && setTheme('rainbow')}
+              disabled={!user}
+              title={!user ? 'Sign in to unlock Rainbow theme' : ''}
+            >
+              Rainbow
+            </button>
+          </div>
         </div>
       </div>
     </div>

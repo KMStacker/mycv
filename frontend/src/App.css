@@ -171,6 +171,22 @@
   box-shadow: 0 0 8px var(--box-shadow-glow);
 }
 
+.disabled-theme-btn,
+.button:disabled {
+  text-decoration: line-through;
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(80%);
+}
+
+.disabled-theme-btn:hover,
+.button:disabled:hover {
+  transform: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+  background-position: left center;
+  color: var(--btn-text);
+}
+
 /* ==========================================================================
    3. FORMS & INPUTS
    ========================================================================== */
@@ -247,10 +263,9 @@
    ========================================================================== */
 
 .showcase-container {
-  width: 100%;
   max-width: 850px;
   display: block;
-  margin: 20px auto;
+  margin: 15px;
   padding: 30px;
 }
 
