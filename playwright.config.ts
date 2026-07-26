@@ -17,7 +17,10 @@ export default defineConfig({
     {
       command: 'npm run start:test --prefix backend',
       url: 'http://localhost:3001/api/projects',
-      reuseExistingServer: !process.env.CI
+      reuseExistingServer: false,
+      env: {
+        NODE_ENV: 'test'
+      }
     },
     {
       command: 'npm run dev --prefix frontend',
