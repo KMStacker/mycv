@@ -63,47 +63,29 @@ const SkillsPage = (): JSX.Element => {
         <div className="showcase-main">
           <div className="showcase-nav-wrapper">
             <button
-              className="button"
+              className="button showcase-nav-btn"
               onClick={handlePrevious}
-              style={{ padding: '12px 16px', fontSize: '1.2rem' }}
             >
               &larr;
             </button>
 
-            <div
-              key={currentSkill.id}
-              className="animated-slide-card showcase-card"
-              style={{ justifyContent: 'center', boxSizing: 'border-box' }}
-            >
-              <h3 className="showcase-title">{currentSkill.name}</h3>
-              <p
-                style={{
-                  fontSize: '1rem',
-                  color: '#f1f5f9',
-                  lineHeight: '1.6',
-                  marginTop: '1rem',
-                  marginBottom: 0
-                }}
-              >
-                <strong className="showcase-tech-label">Level:</strong> {currentSkill.level}
-              </p>
-              <p
-                style={{
-                  fontSize: '1rem',
-                  color: '#f1f5f9',
-                  lineHeight: '1.6',
-                  marginTop: '0.25rem',
-                  marginBottom: '1rem'
-                }}
-              >
-                <strong className="showcase-tech-label">Used on:</strong> {currentSkill.usedOn}
-              </p>
+            <div key={currentSkill.id} className="animated-slide-card showcase-card">
+              <div>
+                <h3 className="showcase-title">{currentSkill.name}</h3>
+                <p className="showcase-tech">
+                  <strong className="showcase-tech-label">Level:</strong>{' '}
+                  {currentSkill.level}
+                </p>
+                <p className="showcase-tech">
+                  <strong className="showcase-tech-label">Used on:</strong>{' '}
+                  {currentSkill.usedOn}
+                </p>
+              </div>
             </div>
 
             <button
-              className="button"
+              className="button showcase-nav-btn"
               onClick={handleNext}
-              style={{ padding: '12px 16px', fontSize: '1.2rem' }}
             >
               &rarr;
             </button>

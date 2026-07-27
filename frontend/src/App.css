@@ -247,7 +247,7 @@
 
 .modal {
   background: var(--modal-bg);
-  border: 1px solid var(--text-highlight);
+  border: 1px solid var(--border-highlight);
   padding: 2rem;
   border-radius: 12px;
   max-height: 90vh;
@@ -355,27 +355,27 @@
 }
 
 .showcase-title {
-  color: var(--text-highlight);
+  color: var(--text-main);
   font-size: 1.6rem;
   margin-top: 0;
   margin-bottom: 15px;
 }
 
 .showcase-description {
-  color: #f1f5f9;
+  color: var(--text-highlight);
   line-height: 1.6;
   margin-bottom: 2rem;
 }
 
 .showcase-tech {
   font-size: 0.95rem;
-  color: #f1f5f9;
+  color: var(--text-highlight);
   margin-top: 3rem;
   margin-bottom: 5px;
 }
 
 .showcase-tech-label {
-  color: var(--text-highlight);
+  color: var(--text-main);
 }
 
 .showcase-nav-lists {
