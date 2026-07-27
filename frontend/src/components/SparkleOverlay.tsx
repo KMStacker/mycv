@@ -6,6 +6,7 @@ interface Sparkle {
   size: number
   color: string
   opacity: number
+  maxOpacity: number
   speed: number
   growing: boolean
 }
@@ -33,13 +34,15 @@ const SparkleOverlay = (): JSX.Element => {
     resizeCanvas()
 
     const createSparkle = (): Sparkle => {
+      const maxOpacity = Math.random() * 0.5 + 0.35
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         size: Math.random() * 1.8 + 0.4,
         color: colors[Math.floor(Math.random() * colors.length)],
-        opacity: 0.01,
-        speed: Math.random() * 0.02 + 0.005,
+        opacity: 0,
+        maxOpacity,
+        speed: Math.random() * 0.0005 + 0.0015,
         growing: true
       }
     }
@@ -54,7 +57,8 @@ const SparkleOverlay = (): JSX.Element => {
       sparkles = sparkles.filter((sparkle) => {
         if (sparkle.growing) {
           sparkle.opacity += sparkle.speed
-          if (sparkle.opacity >= 0.85) {
+          if (sparkle.opacity >= sparkle.maxOpacity) {
+            sparkle.opacity = sparkle.maxOpacity
             sparkle.growing = false
           }
         } else {

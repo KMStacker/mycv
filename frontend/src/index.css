@@ -20,8 +20,9 @@
   --btn-text-hover: #ffffff;
   --btn-hover-shadow: rgba(122, 152, 184, 0.3);
   --box-border: rgba(122, 152, 184, 0.3);
-  --box-shadow-glow: rgba(58, 80, 107, 0.3);
+  --box-shadow-glow: rgba(204, 212, 221, 0.5);
   --text-highlight: #7a98b8;
+  --border-highlight: rgba(249, 251, 252, 0.5);
   --input-bg: rgba(11, 15, 25, 0.6);
   --input-border: rgba(122, 152, 184, 0.4);
   --input-border-focus: #7a98b8;
@@ -42,7 +43,7 @@ body.theme-golden {
     120deg,
     #47452e 0%,
     #b89742 25%,
-    #a7a395 50%,
+    #ac9f71 50%,
     #cfb53b 75%,
     #47452e 100%
   );
@@ -54,18 +55,19 @@ body.theme-golden {
     #f7f4d2 75%,
     #e3c88e 100%
   );
-  --btn-border: #aa771c;
+  --btn-border: #aa9166;
   --btn-text: #1a1610;
   --btn-text-hover: #0a0908;
   --btn-hover-shadow: rgba(218, 165, 32, 0.3);
   --box-border: rgba(252, 246, 186, 0.2);
-  --box-shadow-glow: rgba(170, 119, 28, 0.1);
-  --text-highlight: #fcf6ba;
+  --box-shadow-glow: rgba(246, 239, 239, 0.5);
+  --text-highlight: #3e3d39;
+  --border-highlight: rgba(241, 247, 253, 0.5);
   --input-bg: #302b2699;
   --input-border: rgba(191, 149, 63, 0.4);
   --input-border-focus: #fcf6ba;
   --modal-bg: #1a1610;
-  --text-main: #ffffff;
+  --text-main: #0a0a0afd;
   --card-gradient: linear-gradient(
     120deg,
     rgba(156, 132, 58, 0.95) 0%,
@@ -103,8 +105,9 @@ body.theme-rainbow {
   --btn-text-hover: #ffffff;
   --btn-hover-shadow: rgba(255, 255, 255, 0.5);
   --box-border: rgba(255, 255, 255, 0.4);
-  --box-shadow-glow: rgba(255, 0, 255, 0.3);
+  --box-shadow-glow: rgba(255, 0, 255, 0.5);
   --text-highlight: #180f0f;
+  --border-highlight: rgba(110, 5, 101, 0.2);
   --input-bg: rgba(0, 0, 0, 0.6);
   --input-border: rgba(255, 255, 255, 0.4);
   --input-border-focus: #ffffff;

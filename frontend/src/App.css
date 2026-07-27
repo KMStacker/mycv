@@ -167,8 +167,10 @@
 
 .active-theme-btn {
   font-weight: bold;
-  border-color: var(--text-highlight);
-  box-shadow: 0 0 8px var(--box-shadow-glow);
+  border-color: var(--border-highlight);
+  box-shadow:
+    0 0 10px var(--box-shadow-glow),
+    0 0 20px var(--box-shadow-glow);
 }
 
 .disabled-theme-btn,
@@ -306,7 +308,7 @@
 
 .showcase-sidebar-item.active {
   background: var(--btn-bg);
-  border-color: var(--text-highlight);
+  border-color: var(--border-highlight);
   color: var(--btn-text);
   font-weight: bold;
   box-shadow: 0 0 8px var(--box-shadow-glow);
@@ -405,7 +407,7 @@
 @keyframes cardColorShift {
   0% {
     background-position: 85%;
-    border-color: var(--text-highlight);
+    border-color: var(--border-highlight);
     box-shadow: 0 0 15px var(--box-shadow-glow);
   }
   50% {

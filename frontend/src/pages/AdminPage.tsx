@@ -762,7 +762,7 @@ const AdminPage = ({ user }: AdminPageProps): JSX.Element => {
             <li key={u.id} style={{ marginBottom: '10px' }}>
               <strong>{u.username}</strong> ({u.role}) - Comments: {u.commentCount} &nbsp; Status:{' '}
               {u.commentingDisabled ? (
-                <span style={{ color: 'red', fontWeight: 'bold' }}>Banned</span>
+                <span style={{ color: 'red' }}>Banned</span>
               ) : (
                 <span style={{ color: 'green' }}>Active</span>
               )}
