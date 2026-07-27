@@ -62,10 +62,7 @@ const SkillsPage = (): JSX.Element => {
 
         <div className="showcase-main">
           <div className="showcase-nav-wrapper">
-            <button
-              className="button showcase-nav-btn"
-              onClick={handlePrevious}
-            >
+            <button className="button showcase-nav-btn" onClick={handlePrevious}>
               &larr;
             </button>
 
@@ -73,20 +70,15 @@ const SkillsPage = (): JSX.Element => {
               <div>
                 <h3 className="showcase-title">{currentSkill.name}</h3>
                 <p className="showcase-tech">
-                  <strong className="showcase-tech-label">Level:</strong>{' '}
-                  {currentSkill.level}
+                  <strong className="showcase-tech-label">Level:</strong> {currentSkill.level}
                 </p>
                 <p className="showcase-tech">
-                  <strong className="showcase-tech-label">Used on:</strong>{' '}
-                  {currentSkill.usedOn}
+                  <strong className="showcase-tech-label">Used on:</strong> {currentSkill.usedOn}
                 </p>
               </div>
             </div>
 
-            <button
-              className="button showcase-nav-btn"
-              onClick={handleNext}
-            >
+            <button className="button showcase-nav-btn" onClick={handleNext}>
               &rarr;
             </button>
           </div>

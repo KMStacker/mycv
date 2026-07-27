@@ -784,9 +784,7 @@ const AdminPage = ({ user }: AdminPageProps): JSX.Element => {
                       {u.phone && <div>Phone: {u.phone}</div>}
                     </>
                   ) : (
-                    <div style={{ opacity: 0.7 }}>
-                      No optional information provided.
-                    </div>
+                    <div style={{ opacity: 0.7 }}>No optional information provided.</div>
                   )}
                 </div>
               )}
