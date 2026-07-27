@@ -15,11 +15,11 @@
 |5.7.2025  |3      |added global CSS styles and background image to frontend|
 |6.7.2025  |1      |added backend middleware for unknown endpoints|
 |26.7.2025 |1      |added simple versions of frontend AdminPage and LoginForm components|
-|2.8.2025  |10     |implemented backend user model, admin creation script, authorization, token extractor and expanded error handling|
+|2.8.2025  |8      |implemented backend user model, admin creation script, authorization, token extractor and expanded error handling|
 |3.8.2025  |5      |implemented backend user creation and login endpoints|
 |17.8.2025 |4      |implemented frontend login service for backend communication|
 |30.8.2025 |1      |added request logger middleware|
-|31.8.2025 |11     |implemented full functionality for frontend AdminPage|
+|31.8.2025 |9      |implemented full functionality for frontend AdminPage|
 |13.6.2026 |1      |converted backend environment and configuration to TypeScript|
 |          |1      |converted utility modules to TypeScript|
 |          |2      |converted database models to TypeScript and fixed JSON transformations|
@@ -45,4 +45,33 @@
 |          |3      |synchronized project and skill IDs to integers and added detail toggles|
 |27.6.2026 |3      |extracted registration workflow into reusable RegisterForm component and cleaned up guestbook|
 |          |3      |implemented modal layout for registration forms and invented worklog script for counting total hours|
-|**Total**|**128**||
+|          |4      |implemented dynamic blue theme with animated background and sliding button gradients|
+|28.6.2026 |3      |implemented canvas sparkle overlay with randomized particles|
+|          |2      |refactored login form into a modal component and unified user auth Uis|
+|          |5      |set up Jest and Supertest environment, wrote initial user tests, and some debugging and fixing|
+|29.6.2026 |3      |implemented backend API integration tests for projects, skills, and comments using Jest and Supertest|
+|          |3      |configured Vitest testing environment with jsdom and wrote component tests for LoginForm and RegisterForm|
+|          |4      |wrote page tests for all the current pages in frontend|
+|30.6.2026 |4      |configured playwright and implemented first e2e tests|
+|          |5      |added more e2e tests and then debugged and fixed them (clicking and type issues)|
+|1.7.2026  |4      |created initial github actions workflow file, structured pipeline jobs and made overall configurations|
+|          |5      |implemented carousel showcase sliders for projects and skills, and fixed tests|
+|2.7.2026  |6      |debugged and fixed CI/CD pipeline and deployed the application to render|
+|3.7.2026  |5      |implemented anonymous guestbook workflows with conditional authentication views, improved styles, fixed tests|
+|4.7.2026  |6      |implemented dynamic global themes and refactored layouts|
+|5.7.2026  |2      |implemented isolated database seeding script for projects and skills, chained with admin script in package.json|
+|          |2      |implemented delete functionality for guestbook comments available for admin|
+|          |2      |added functionality to reorder projects and skills and API tests for reordering and comment deletion|
+|6.7.2026  |3      |added comment deletion and user banning for the admin, and added and fixed tests|
+|7.7.2026  |3      |added ability to reply to comments|
+|13.7.2026 |1      |migrated database to use Aiven.io PostgreSQL, and updated render.yml and secrets|
+|22.7.2026 |2      |implemented sidebar navigation list for projects and skills showcase views|
+|23.7.2026 |6      |added 'about me' and 'contact info' fields to the homepage, fixed tests, and did some overall fine-tuning|
+|24.7.2026 |4      |added integration tests for profile and login endpoints|
+|25.7.2026 |1      |updated HTML title, custom favicon, changed homepage texts and made createAdminAccount more robust|
+|          |2      |added Prettier and test coverage reporting tool, fixed css things and theme buttons|
+|          |1      |isolated E2E test suite environment and created e2e test DB reset script|
+|          |2      |implemented delete user and show optional info functionalities for the admin to use|
+|26.7.2026 |1      |made minor style changes|
+|          |2      |updated README and worklog|
+|**Total**|**217**||
