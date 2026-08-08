@@ -43,6 +43,11 @@ const runMigrations = async () => {
         name: '005_initialize_profile.js',
         up: async (params) => require('../migrations/005_initialize_profile.js').up(params),
         down: async (params) => require('../migrations/005_initialize_profile.js').down(params)
+      },
+      {
+        name: '006_initialize_analytics.js',
+        up: async (params) => require('../migrations/006_initialize_analytics.js').up(params),
+        down: async (params) => require('../migrations/006_initialize_analytics.js').down(params)
       }
     ],
     storage: new SequelizeStorage({ sequelize, tableName: 'migrations' }),

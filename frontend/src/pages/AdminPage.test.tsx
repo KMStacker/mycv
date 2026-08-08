@@ -23,6 +23,12 @@ const mockUsers = [
   { id: 2, username: 'banneduser', role: 'USER', commentingDisabled: true, commentCount: 0 }
 ]
 
+const mockAnalytics = {
+  totalVisits: 10,
+  activeLast24h: 3,
+  countryStats: [{ id: 1, countryCode: 'FI', countryName: 'Finland', visitCount: 10 }]
+}
+
 beforeEach(() => {
   vi.clearAllMocks()
 
@@ -31,6 +37,7 @@ beforeEach(() => {
       if (url.includes('projects')) return Promise.resolve({ data: mockProjects })
       if (url.includes('skills')) return Promise.resolve({ data: mockSkills })
       if (url.includes('users')) return Promise.resolve({ data: mockUsers })
+      if (url.includes('analytics')) return Promise.resolve({ data: mockAnalytics })
     }
     return Promise.resolve({ data: [] })
   })
