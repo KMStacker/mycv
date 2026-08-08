@@ -49,6 +49,19 @@ interface AdminPageProps {
   user: User | null
 }
 
+export interface CountryStatData {
+  id: number
+  countryCode: string
+  countryName: string
+  visitCount: number
+}
+
+export interface AnalyticsSummary {
+  totalVisits: number
+  activeLast24h: number
+  countryStats: CountryStatData[]
+}
+
 const AdminPage = ({ user }: AdminPageProps): JSX.Element => {
   const [adminUsers, setAdminUsers] = useState<UserWithStats[]>([])
   const [visibleUserInfos, setVisibleUserInfos] = useState<number[]>([])
@@ -89,6 +102,23 @@ const AdminPage = ({ user }: AdminPageProps): JSX.Element => {
   const [editingProfile, setEditingProfile] = useState<boolean>(false)
   const [profileError, setProfileError] = useState<string | null>(null)
   const [profileSuccess, setProfileSuccess] = useState<string | null>(null)
+  const [analytics, setAnalytics] = useState<AnalyticsSummary | null>(null)
+
+  useEffect(() => {
+    const fetchAnalytics = async () => {
+      if (user?.role === 'ADMIN') {
+        try {
+          const res = await axios.get<AnalyticsSummary>('/api/analytics', {
+            headers: { Authorization: `Bearer ${user.token}` }
+          })
+          setAnalytics(res.data)
+        } catch (err) {
+          console.error('Failed to fetch analytics', err)
+        }
+      }
+    }
+    void fetchAnalytics()
+  }, [user])
 
   useEffect(() => {
     axios.get<Skill[]>('/api/skills').then((response) => {
@@ -381,6 +411,39 @@ const AdminPage = ({ user }: AdminPageProps): JSX.Element => {
     <>
       <div className="content-window">
         <h1>This is the admin page!</h1>
+      </div>
+      <hr></hr>
+      
+      <div className="content-window" style={{ marginTop: '20px' }}>
+        <h4>Visitor Analytics:</h4>
+        {analytics ? (
+          <div>
+            <p>
+              <strong>Total Tracked Visits:</strong> {analytics.totalVisits} |{' '}
+              <strong>Unique IPs (24h):</strong> {analytics.activeLast24h}
+            </p>
+            <table style={{ width: '100%' }}>
+              <thead>
+                <tr style={{ textAlign: 'left' }}>
+                  <th>Country</th>
+                  <th>Code</th>
+                  <th>Visits</th>
+                </tr>
+              </thead>
+              <tbody>
+                {analytics.countryStats?.map((stat) => (
+                  <tr key={stat.id}>
+                    <td>{stat.countryName}</td>
+                    <td>{stat.countryCode}</td>
+                    <td>{stat.visitCount}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p>Loading analytics data...</p>
+        )}
       </div>
       <hr></hr>
       <div>
