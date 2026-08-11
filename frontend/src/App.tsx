@@ -45,14 +45,10 @@ const App = (): JSX.Element => {
   }, [theme])
 
   const handleLogin = async (username: string, password: string): Promise<void> => {
-    try {
-      const loggedUser = await loginService.login({ username, password })
-      window.localStorage.setItem('loggedInUser', JSON.stringify(loggedUser))
-      setUser(loggedUser)
-      loginService.setToken(loggedUser.token)
-    } catch (exception) {
-      console.log(exception)
-    }
+    const loggedUser = await loginService.login({ username, password })
+    window.localStorage.setItem('loggedInUser', JSON.stringify(loggedUser))
+    setUser(loggedUser)
+    loginService.setToken(loggedUser.token)
   }
 
   const handleLogout = (): void => {

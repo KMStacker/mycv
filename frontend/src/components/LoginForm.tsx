@@ -9,18 +9,25 @@ interface LoginFormProps {
 const LoginForm = ({ handleLogin, onSuccess, onCancel }: LoginFormProps): JSX.Element => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [error, setError] = useState<string | null>(null)
 
   const submitLogin = async (event: React.SyntheticEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
-    await handleLogin(username, password)
-    setUsername('')
-    setPassword('')
-    onSuccess()
+    setError(null)
+    try {
+      await handleLogin(username, password)
+      setUsername('')
+      setPassword('')
+      onSuccess()
+    } catch (err: any) {
+      setError(err.response?.data?.error || 'Invalid username or password')
+    }
   }
 
   return (
     <div className="feature-editor" style={{ padding: '10px' }}>
       <h2>Login to Account</h2>
+      {error && <p style={{ color: 'red', marginBottom: '10px' }}>{error}</p>}
       <form onSubmit={submitLogin}>
         <div className="editor-section" style={{ marginBottom: '10px' }}>
           <input
