@@ -12,6 +12,7 @@ export interface Project {
 const ProjectsPage = (): JSX.Element => {
   const [projects, setProjects] = useState<Project[]>([])
   const [currentIndex, setCurrentIndex] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -20,10 +21,21 @@ const ProjectsPage = (): JSX.Element => {
         setProjects(response.data)
       } catch (error) {
         console.error(error)
+      } finally {
+        setLoading(false)
       }
     }
     void fetchProjects()
   }, [])
+
+  if (loading) {
+    return (
+      <div className="content-window showcase-container">
+        <h1 className="showcase-header">Projects Showcase</h1>
+        <p style={{ textAlign: 'center', marginTop: '20px' }}>Loading projects...</p>
+      </div>
+    )
+  }
 
   const handleNext = (): void => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length)

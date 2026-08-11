@@ -11,6 +11,7 @@ export interface Skill {
 const SkillsPage = (): JSX.Element => {
   const [skills, setSkills] = useState<Skill[]>([])
   const [currentIndex, setCurrentIndex] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -19,11 +20,21 @@ const SkillsPage = (): JSX.Element => {
         setSkills(response.data)
       } catch (error) {
         console.error(error)
+      } finally {
+        setLoading(false)
       }
     }
     void fetchSkills()
   }, [])
 
+  if (loading) {
+    return (
+      <div className="content-window showcase-container">
+        <h1 className="showcase-header">Skills Showcase</h1>
+        <p style={{ textAlign: 'center', marginTop: '20px' }}>Loading skills...</p>
+      </div>
+    )
+  }
   const handleNext = (): void => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % skills.length)
   }
