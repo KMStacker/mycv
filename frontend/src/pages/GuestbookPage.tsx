@@ -92,16 +92,18 @@ const GuestbookPage = ({ user, handleLogin }: GuestbookPageProps): JSX.Element =
               </span>
             )}
             : {comment.content}
-            <button
-              className="button"
-              onClick={() => {
-                setReplyingTo(comment.id)
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-              }}
-              style={{ padding: '2px 8px', fontSize: '0.8rem', marginLeft: '10px' }}
-            >
-              Reply
-            </button>
+            {user && (
+              <button
+                className="button"
+                onClick={() => {
+                  setReplyingTo(comment.id)
+                  window.scrollTo({ top: 0, behavior: 'smooth' })
+                }}
+                style={{ padding: '2px 8px', fontSize: '0.8rem', marginLeft: '10px' }}
+              >
+                Reply
+              </button>
+            )}
             {user?.role === 'ADMIN' && (
               <button
                 className="button"
