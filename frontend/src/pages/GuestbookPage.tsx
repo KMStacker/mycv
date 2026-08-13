@@ -2,6 +2,25 @@ import React, { useState, useEffect, JSX } from 'react'
 import commentService, { Comment } from '../services/comments'
 import LoginForm from '../components/LoginForm'
 import RegisterForm from '../components/RegisterForm'
+import {
+  Box,
+  Typography,
+  Paper,
+  Button,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Container,
+  List,
+  ListItem,
+  Chip,
+  IconButton,
+  Alert
+} from '@mui/material'
+import ReplyIcon from '@mui/icons-material/Reply'
+import DeleteIcon from '@mui/icons-material/Delete'
+import SendIcon from '@mui/icons-material/Send'
+import LockIcon from '@mui/icons-material/Lock'
 
 interface User {
   username: string
@@ -77,207 +96,260 @@ const GuestbookPage = ({ user, handleLogin }: GuestbookPageProps): JSX.Element =
     if (threadComments.length === 0) return null
 
     return (
-      <ul
-        style={{
-          paddingLeft: depth === 0 ? '20px' : '40px',
-          marginTop: depth === 0 ? '0' : '10px'
-        }}
-      >
+      <List disablePadding sx={{ pl: depth === 0 ? 0 : { xs: 2, sm: 4 }, mt: depth === 0 ? 0 : 1 }}>
         {threadComments.map((comment) => (
-          <li key={comment.id} style={{ marginBottom: '10px' }}>
-            <strong>{comment.user ? comment.user.username : `${comment.guestName}`}</strong>
-            {!comment.isPublic && (
-              <span style={{ fontStyle: 'italic', fontSize: '0.8rem', marginLeft: '5px' }}>
-                [Private]
-              </span>
-            )}
-            : {comment.content}
-            {user && (
-              <button
-                className="button"
-                onClick={() => {
-                  setReplyingTo(comment.id)
-                  window.scrollTo({ top: 0, behavior: 'smooth' })
-                }}
-                style={{ padding: '2px 8px', fontSize: '0.8rem', marginLeft: '10px' }}
-              >
-                Reply
-              </button>
-            )}
-            {user?.role === 'ADMIN' && (
-              <button
-                className="button"
-                onClick={() => void handleDeleteComment(comment.id)}
-                style={{ padding: '2px 8px', fontSize: '0.8rem', marginLeft: '10px' }}
-              >
-                Delete
-              </button>
-            )}
+          <ListItem
+            key={comment.id}
+            disablePadding
+            sx={{
+              mb: 1.5,
+              display: 'block'
+            }}
+          >
+            <Paper
+              sx={{
+                p: 2,
+                bgcolor: 'rgba(10, 5, 20, 0.85)',
+                border: '1px solid rgba(0, 255, 255, 0.3)',
+                boxShadow: 'inset 0 0 10px rgba(0,0,0,0.8)'
+              }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Typography variant="subtitle2" sx={{ color: '#00ffff', fontWeight: 'bold' }}>
+                    {comment.user ? comment.user.username : comment.guestName}
+                  </Typography>
+                  {!comment.isPublic && (
+                    <Chip
+                      icon={<LockIcon sx={{ fontSize: '0.8rem !important', color: '#ff00a0 !important' }} />}
+                      label="PRIVATE"
+                      size="small"
+                      sx={{
+                        bgcolor: 'rgba(255, 0, 160, 0.1)',
+                        color: '#ff00a0',
+                        border: '1px solid rgba(255, 0, 160, 0.4)',
+                        fontSize: '0.65rem',
+                        fontWeight: 'bold'
+                      }}
+                    />
+                  )}
+                </Box>
+
+                <Box sx={{ display: 'flex', gap: 1 }}>
+                  {user && (
+                    <IconButton
+                      size="small"
+                      onClick={() => {
+                        setReplyingTo(comment.id)
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                      }}
+                      sx={{ color: '#00ffff', '&:hover': { bgcolor: 'rgba(0, 255, 255, 0.1)' } }}
+                    >
+                      <ReplyIcon fontSize="small" />
+                    </IconButton>
+                  )}
+                  {user?.role === 'ADMIN' && (
+                    <IconButton
+                      size="small"
+                      onClick={() => void handleDeleteComment(comment.id)}
+                      sx={{ color: '#ff00a0', '&:hover': { bgcolor: 'rgba(255, 0, 160, 0.1)' } }}
+                    >
+                      <DeleteIcon fontSize="small" />
+                    </IconButton>
+                  )}
+                </Box>
+              </Box>
+
+              <Typography variant="body2" sx={{ color: '#e0e0e0', lineHeight: 1.5 }}>
+                {comment.content}
+              </Typography>
+            </Paper>
+
             {renderCommentThread(comment.id, depth + 1)}
-          </li>
+          </ListItem>
         ))}
-      </ul>
+      </List>
     )
   }
 
   return (
-    <div className="content-window">
-      <div className="info-box">
-        <h1>Guestbook</h1>
-
-        <p style={{ fontStyle: 'italic', marginBottom: '15px' }}>
-          Feel free to leave a public comment, or a private message for the admin's eyes only!
-        </p>
-        <br />
-      </div>
-
-      {replyingTo && (
-        <div
-          className="info-box"
-          style={{
-            marginBottom: '15px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center'
+    <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Paper
+        elevation={10}
+        sx={{
+          p: { xs: 2, sm: 4 },
+          bgcolor: 'rgba(15, 8, 30, 0.75)',
+          border: '1px solid rgba(0, 255, 255, 0.3)',
+          boxShadow: '0 12px 40px rgba(0,0,0,0.8), 0 0 20px rgba(255, 0, 160, 0.2)'
+        }}
+      >
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{
+            fontFamily: '"Orbitron", sans-serif',
+            fontWeight: 900,
+            color: '#00ffff',
+            textShadow: '0 0 10px rgba(0, 255, 255, 0.8)',
+            letterSpacing: '2px',
+            mb: 2
           }}
         >
-          <span style={{ color: 'var(--text-highlight)' }}>Replying to a comment...</span>
-          <button
-            className="button"
-            style={{ margin: 0, padding: '4px 10px' }}
-            onClick={() => setReplyingTo(null)}
-          >
-            Cancel Reply
-          </button>
-        </div>
-      )}
+          GUESTBOOK//TRANSMISSIONS
+        </Typography>
 
-      {user ? (
-        <form onSubmit={handlePostComment}>
-          <div
-            style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '15px' }}
+        <Typography variant="body2" align="center" sx={{ color: '#aaa', fontStyle: 'italic', mb: 3 }}>
+          Feel free to leave a public comment, or a private message for the admin's eyes only!
+        </Typography>
+
+        {replyingTo && (
+          <Alert
+            severity="info"
+            action={
+              <Button color="inherit" size="small" onClick={() => setReplyingTo(null)}>
+                CANCEL
+              </Button>
+            }
+            sx={{ mb: 3, bgcolor: 'rgba(0, 255, 255, 0.1)', color: '#00ffff', border: '1px solid #00ffff' }}
           >
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <input
-                type="text"
-                className="theme-input"
+            Replying to comment #{replyingTo}...
+          </Alert>
+        )}
+
+        {user ? (
+          <Box component="form" onSubmit={handlePostComment} sx={{ mb: 4 }}>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mb: 1 }}>
+              <TextField
+                fullWidth
+                variant="outlined"
+                size="small"
                 value={newComment}
                 onChange={({ target }) => setNewComment(target.value)}
                 placeholder="Write a comment..."
                 required
-                style={{ width: '300px' }}
               />
-              <button type="submit" className="button" style={{ margin: 0 }}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                endIcon={<SendIcon />}
+                sx={{ minWidth: '120px' }}
+              >
                 Post
-              </button>
-            </div>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-              <input type="checkbox" checked={!isPublic} onChange={() => setIsPublic(!isPublic)} />
-              Make comment private
-            </label>
-          </div>
-        </form>
-      ) : (
-        <div style={{ marginBottom: '15px', marginTop: '2rem' }}>
-          {viewMode === 'NONE' && (
-            <div>
-              <p>In order to leave a comment, choose one:</p>
-              <div style={{ display: 'flex', gap: '10px' }}>
-                <button className="button" onClick={() => setViewMode('LOGIN')}>
-                  Login
-                </button>
-                <button className="button" onClick={() => setViewMode('REGISTER')}>
-                  Sign up
-                </button>
-                <button className="button" onClick={() => setViewMode('GUEST')}>
-                  Leave comment as guest
-                </button>
-              </div>
-            </div>
-          )}
-
-          {viewMode === 'LOGIN' && (
-            <LoginForm
-              handleLogin={handleLogin}
-              onSuccess={() => setViewMode('NONE')}
-              onCancel={() => setViewMode('NONE')}
+              </Button>
+            </Box>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={!isPublic}
+                  onChange={() => setIsPublic(!isPublic)}
+                  sx={{ color: '#ff00a0', '&.Mui-checked': { color: '#ff00a0' } }}
+                />
+              }
+              label={<Typography variant="caption" sx={{ color: '#aaa' }}>Make comment private</Typography>}
             />
-          )}
+          </Box>
+        ) : (
+          <Box sx={{ mb: 4, mt: 2 }}>
+            {viewMode === 'NONE' && (
+              <Paper sx={{ p: 3, textAlign: 'center', bgcolor: 'rgba(10, 5, 20, 0.85)' }}>
+                <Typography variant="body1" sx={{ color: '#fff', mb: 2 }}>
+                  In order to leave a comment, choose one:
+                </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
+                  <Button variant="outlined" onClick={() => setViewMode('LOGIN')}>
+                    Login
+                  </Button>
+                  <Button variant="contained" color="secondary" onClick={() => setViewMode('REGISTER')}>
+                    Sign up
+                  </Button>
+                  <Button variant="outlined" color="primary" onClick={() => setViewMode('GUEST')}>
+                    Leave comment as guest
+                  </Button>
+                </Box>
+              </Paper>
+            )}
 
-          {viewMode === 'REGISTER' && (
-            <RegisterForm
-              handleLogin={handleLogin}
-              onSuccess={() => setViewMode('NONE')}
-              onCancel={() => setViewMode('NONE')}
-            />
-          )}
+            {viewMode === 'LOGIN' && (
+              <LoginForm
+                handleLogin={handleLogin}
+                onSuccess={() => setViewMode('NONE')}
+                onCancel={() => setViewMode('NONE')}
+              />
+            )}
 
-          {viewMode === 'GUEST' && (
-            <form onSubmit={handlePostComment}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <div>
-                  <span
-                    style={{
-                      fontSize: '0.9rem',
-                      color: 'gray',
-                      display: 'block',
-                      marginBottom: '5px'
-                    }}
-                  >
-                    Your name will start with Guest_ followed by a unique ID (+ optional ending).
-                  </span>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                    <p>Guest_xxx + </p>
-                    <input
-                      type="text"
-                      className="theme-input"
-                      value={guestName}
-                      onChange={({ target }) => setGuestName(target.value)}
-                      placeholder="Optional text..."
-                      style={{ width: '180px' }}
-                    />
-                  </div>
-                </div>
-                <div style={{ display: 'flex', gap: '10px' }}>
-                  <input
-                    type="text"
-                    className="theme-input"
+            {viewMode === 'REGISTER' && (
+              <RegisterForm
+                handleLogin={handleLogin}
+                onSuccess={() => setViewMode('NONE')}
+                onCancel={() => setViewMode('NONE')}
+              />
+            )}
+
+            {viewMode === 'GUEST' && (
+              <Paper component="form" onSubmit={handlePostComment} sx={{ p: 3, bgcolor: 'rgba(10, 5, 20, 0.85)' }}>
+                <Typography variant="caption" sx={{ color: '#aaa', display: 'block', mb: 1 }}>
+                  Your name will start with Guest_ followed by a unique ID (+ optional ending).
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 2 }}>
+                  <Typography variant="body2" sx={{ color: '#00ffff', fontWeight: 'bold' }}>
+                    Guest_xxx +
+                  </Typography>
+                  <TextField
+                    size="small"
+                    value={guestName}
+                    onChange={({ target }) => setGuestName(target.value)}
+                    placeholder="Optional text..."
+                  />
+                </Box>
+
+                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mb: 1 }}>
+                  <TextField
+                    fullWidth
+                    size="small"
                     value={newComment}
                     onChange={({ target }) => setNewComment(target.value)}
                     placeholder="Write a comment..."
                     required
-                    style={{ width: '300px' }}
                   />
-                  <button type="submit" className="button" style={{ margin: 0 }}>
+                  <Button type="submit" variant="contained" color="primary" endIcon={<SendIcon />}>
                     Post
-                  </button>
-                </div>
-                <label style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                  <input
-                    type="checkbox"
-                    checked={!isPublic}
-                    onChange={() => setIsPublic(!isPublic)}
-                  />
-                  Make comment private
-                </label>
-                <button
-                  type="button"
-                  className="button"
-                  onClick={() => setViewMode('NONE')}
-                  style={{ width: '100px' }}
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          )}
-        </div>
-      )}
+                  </Button>
+                </Box>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <h3>Comments:</h3>
-      {renderCommentThread(null, 0)}
-    </div>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 1 }}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={!isPublic}
+                        onChange={() => setIsPublic(!isPublic)}
+                        sx={{ color: '#ff00a0', '&.Mui-checked': { color: '#ff00a0' } }}
+                      />
+                    }
+                    label={<Typography variant="caption" sx={{ color: '#aaa' }}>Make comment private</Typography>}
+                  />
+                  <Button variant="text" size="small" onClick={() => setViewMode('NONE')} sx={{ color: '#aaa' }}>
+                    Cancel
+                  </Button>
+                </Box>
+              </Paper>
+            )}
+          </Box>
+        )}
+
+        {error && (
+          <Alert severity="error" sx={{ mb: 3 }}>
+            {error}
+          </Alert>
+        )}
+
+        <Typography variant="h6" sx={{ color: '#00ffff', fontFamily: '"Orbitron", sans-serif', mb: 2 }}>
+          COMMENTS//
+        </Typography>
+
+        {renderCommentThread(null, 0)}
+      </Paper>
+    </Container>
   )
 }
 
