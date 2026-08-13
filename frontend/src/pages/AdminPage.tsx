@@ -413,7 +413,7 @@ const AdminPage = ({ user }: AdminPageProps): JSX.Element => {
         <h1>This is the admin page!</h1>
       </div>
       <hr></hr>
-      
+
       <div className="content-window" style={{ marginTop: '20px' }}>
         <h4>Visitor Analytics:</h4>
         {analytics ? (

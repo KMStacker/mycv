@@ -23,7 +23,7 @@ const SparkleOverlay = (): JSX.Element => {
 
     let animationFrameId: number
     let sparkles: Sparkle[] = []
-    const colors = ['#fcf6ba', '#8a9597', '#e9d4d4', '#cfb53b', '#b89742']
+    const colors = ['#00ffff', '#ff00a0', '#7928ca', '#ffffff', '#ffd700']
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth

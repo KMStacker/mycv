@@ -51,10 +51,7 @@ describe('analytics api integration tests', () => {
   })
 
   test('fetching analytics fails for standard user with status 403', async () => {
-    await api
-      .get('/api/analytics')
-      .set('Authorization', `Bearer ${userToken}`)
-      .expect(403)
+    await api.get('/api/analytics').set('Authorization', `Bearer ${userToken}`).expect(403)
   })
 
   test('admin can fetch analytics summary successfully', async () => {
