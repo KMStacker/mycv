@@ -23,7 +23,17 @@ const SparkleOverlay = (): JSX.Element => {
 
     let animationFrameId: number
     let sparkles: Sparkle[] = []
-    const colors = ['#00ff66', '#00ffff', '#ff00a0', '#ffffff', '#ffd700']
+
+    const getPaletteColors = (): string[] => {
+      const bodyClass = document.body.className
+      if (bodyClass.includes('theme-golden')) {
+        return ['#ffd700', '#ff8c00', '#ffc0cb', '#ffffff', '#e3c88e']
+      }
+      if (bodyClass.includes('theme-rainbow')) {
+        return ['#ff0055', '#00ff66', '#00ffff', '#ff00a0', '#ffff00', '#ffffff']
+      }
+      return ['#00ff66', '#00ffff', '#ff00a0', '#ffffff', '#ffd700']
+    }
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth
@@ -34,15 +44,16 @@ const SparkleOverlay = (): JSX.Element => {
     resizeCanvas()
 
     const createSparkle = (): Sparkle => {
-      const maxOpacity = Math.random() * 0.5 + 0.35
+      const maxOpacity = Math.random() * 0.7 + 0.3
+      const currentColors = getPaletteColors()
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 1.8 + 0.4,
-        color: colors[Math.floor(Math.random() * colors.length)],
+        size: Math.random() * 2.2 + 0.5,
+        color: currentColors[Math.floor(Math.random() * currentColors.length)],
         opacity: 0,
         maxOpacity,
-        speed: Math.random() * 0.0005 + 0.0015,
+        speed: Math.random() * 0.001 + 0.002,
         growing: true
       }
     }

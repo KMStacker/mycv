@@ -22,90 +22,48 @@
 }
 
 body.theme-golden {
-  --bg-gradient: linear-gradient(
-    120deg,
-    #47452e 0%,
-    #b89742 25%,
-    #ac9f71 50%,
-    #cfb53b 75%,
-    #47452e 100%
-  );
-  --btn-bg: linear-gradient(
-    to right,
-    #cfaa5b 0%,
-    #e4e0b2 25%,
-    #f6f5f3 48%,
-    #f7f4d2 75%,
-    #e3c88e 100%
-  );
-  --btn-border: #aa9166;
-  --btn-text: #1a1610;
-  --btn-text-hover: #0a0908;
-  --btn-hover-shadow: rgba(218, 165, 32, 0.3);
-  --box-border: rgba(252, 246, 186, 0.2);
-  --box-shadow-glow: rgba(246, 239, 239, 0.5);
-  --text-highlight: #1b1a19;
-  --border-highlight: rgba(255, 255, 255, 0.5);
-  --input-bg: #302b2699;
-  --input-border: rgba(191, 149, 63, 0.4);
-  --input-border-focus: #fcf6ba;
-  --modal-bg: #98805c;
-  --text-main: #121212fd;
+  --bg-gradient: radial-gradient(circle at 50% 20%, #201704 0%, #0d0a02 60%, #040300 100%);
+  --btn-bg: linear-gradient(90deg, #ffd700 0%, #ff8c00 50%, #ff4500 100%);
+  --btn-border: #ffd700;
+  --btn-text: #ffffff;
+  --btn-text-hover: #ffffff;
+  --btn-hover-shadow: rgba(255, 215, 0, 0.7);
+  --box-border: rgba(255, 215, 0, 0.4);
+  --box-shadow-glow: rgba(255, 140, 0, 0.45);
+  --text-highlight: #ffd700;
+  --border-highlight: #ff8c00;
+  --input-bg: rgba(25, 18, 5, 0.75);
+  --input-border: rgba(255, 215, 0, 0.45);
+  --input-border-focus: #ffd700;
+  --modal-bg: rgba(25, 18, 5, 0.95);
+  --text-main: #ffffff;
   --card-gradient: linear-gradient(
-    120deg,
-    rgba(156, 132, 58, 0.95) 0%,
-    rgba(175, 160, 128, 0.95) 30%,
-    rgba(156, 132, 58, 0.95) 55%,
-    rgba(175, 160, 128, 0.95) 70%,
-    rgba(156, 132, 58, 0.95) 100%
+    135deg,
+    rgba(35, 25, 8, 0.8) 0%,
+    rgba(15, 10, 3, 0.9) 100%
   );
 }
 
 body.theme-rainbow {
-  --bg-gradient: linear-gradient(
-    120deg,
-    rgba(248, 69, 69, 0.6) 0%,
-    rgb(249, 156, 62) 15%,
-    rgb(241, 241, 54) 30%,
-    rgb(80, 241, 80) 45%,
-    rgba(116, 116, 243, 0.6) 60%,
-    rgb(153, 99, 192) 75%,
-    rgb(187, 82, 232) 100%
-  );
-  --btn-bg: linear-gradient(
-    to right,
-    #ff0000 0%,
-    #ff7f00 5%,
-    #ffff00 15%,
-    #00ff00 25%,
-    #0000ff 39%,
-    #4b0082,
-    #9400d3,
-    #ff0000
-  );
-  --btn-border: rgb(255, 255, 255, 0.4);
-  --btn-text: #28352b;
+  --bg-gradient: radial-gradient(circle at 50% 20%, #1c0529 0%, #0a0112 60%, #030005 100%);
+  --btn-bg: linear-gradient(90deg, #ff0055 0%, #00ff66 33%, #00ffff 66%, #ff00a0 100%);
+  --btn-border: #00ffff;
+  --btn-text: #ffffff;
   --btn-text-hover: #ffffff;
-  --btn-hover-shadow: rgba(255, 255, 255, 0.5);
-  --box-border: rgba(255, 255, 255, 0.4);
-  --box-shadow-glow: rgba(255, 0, 255, 0.5);
-  --text-highlight: #180f0f;
-  --border-highlight: rgba(110, 5, 101, 0.2);
-  --input-bg: rgba(72, 68, 68, 0.6);
-  --input-border: rgba(255, 255, 255, 0.4);
-  --input-border-focus: #ffffff;
-  --modal-bg: #916d90;
-  --text-main: #121412;
+  --btn-hover-shadow: rgba(0, 255, 255, 0.8);
+  --box-border: rgba(255, 0, 160, 0.45);
+  --box-shadow-glow: rgba(0, 255, 255, 0.5);
+  --text-highlight: #00ffff;
+  --border-highlight: #ff00a0;
+  --input-bg: rgba(18, 5, 28, 0.75);
+  --input-border: rgba(0, 255, 255, 0.45);
+  --input-border-focus: #ff00a0;
+  --modal-bg: rgba(20, 5, 30, 0.95);
+  --text-main: #ffffff;
   --card-gradient: linear-gradient(
-    120deg,
-    rgba(247, 82, 53, 0.95) 5%,
-    rgba(193, 220, 18, 0.95) 15%,
-    rgba(21, 158, 196, 0.95) 21%,
-    rgba(220, 122, 18, 0.95) 32%,
-    rgba(25, 236, 25, 0.95) 42%,
-    rgba(185, 65, 185, 0.95) 48%,
-    rgba(61, 131, 236, 0.95) 65%,
-    rgba(245, 82, 53, 0.95) 85%
+    135deg,
+    rgba(30, 8, 42, 0.8) 0%,
+    rgba(10, 2, 20, 0.9) 100%
   );
 }
 
