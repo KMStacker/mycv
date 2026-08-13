@@ -11,6 +11,10 @@ export const retroTheme = createTheme({
       main: '#ff00a0',
       contrastText: '#ffffff'
     },
+    success: {
+      main: '#00ff66',
+      contrastText: '#000000'
+    },
     background: {
       default: '#08040c',
       paper: 'rgba(15, 8, 30, 0.75)'
@@ -31,6 +35,11 @@ export const retroTheme = createTheme({
       fontFamily: '"Orbitron", sans-serif',
       color: '#ff00a0',
       textShadow: '0 0 10px rgba(255, 0, 160, 0.6)'
+    },
+    h3: {
+      fontFamily: '"Orbitron", sans-serif',
+      color: '#00ff66',
+      textShadow: '0 0 10px rgba(0, 255, 102, 0.6)'
     }
   },
   components: {

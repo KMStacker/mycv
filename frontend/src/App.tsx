@@ -170,9 +170,10 @@ const App = (): JSX.Element => {
                     label={`USER: ${user.username}`}
                     size="small"
                     sx={{
-                      bgcolor: 'rgba(0, 255, 255, 0.1)',
-                      color: '#00ffff',
-                      border: '1px solid rgba(0, 255, 255, 0.4)',
+                      bgcolor: 'rgba(0, 255, 102, 0.15)',
+                      color: '#00ff66',
+                      border: '1px solid rgba(0, 255, 102, 0.5)',
+                      boxShadow: '0 0 8px rgba(0, 255, 102, 0.4)',
                       fontWeight: 'bold',
                       fontFamily: 'monospace'
                     }}
@@ -194,6 +195,15 @@ const App = (): JSX.Element => {
                     onClick={() => setShowLoginModal(true)}
                     startIcon={<LoginIcon />}
                     size="small"
+                    sx={{
+                      color: '#00ff66',
+                      borderColor: 'rgba(0, 255, 102, 0.5)',
+                      '&:hover': {
+                        borderColor: '#00ff66',
+                        bgcolor: 'rgba(0, 255, 102, 0.15)',
+                        boxShadow: '0 0 12px rgba(0, 255, 102, 0.6)'
+                      }
+                    }}
                   >
                     Login
                   </Button>
