@@ -21,7 +21,7 @@ const seedDatabase = async (): Promise<void> => {
         name: 'Kyösti Männistö',
         email: 'kmannisto@hotmail.com',
         phone: '+358 50 5179151',
-        aboutText: 'Software developer with a Master of Laws degree',
+        aboutText: 'Software developer with a Master of Laws degree.',
         location: 'Espoo, Finland',
         githubUrl: 'https://github.com/KMStacker',
         status: 'Open for Software Engineering Opportunities'

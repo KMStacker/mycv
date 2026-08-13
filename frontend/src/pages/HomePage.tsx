@@ -11,16 +11,16 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Link as MuiLink,
   Tooltip
 } from '@mui/material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
-import GitHubIcon from '@mui/icons-material/GitHub'
 import InfoIcon from '@mui/icons-material/Info'
 import PaletteIcon from '@mui/icons-material/Palette'
+
+import SpaceConsoleHero from '../components/SpaceConsoleHero'
 
 interface User {
   username: string
@@ -86,7 +86,7 @@ const HomePage = ({ user, theme, setTheme }: HomePageProps): JSX.Element => {
         </Typography>
 
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>
-          <Box sx={{ width: { xs: '100%', md: '320px' }, display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Box sx={{ width: { xs: '100%', md: '360px' }, display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Paper
               sx={{
                 p: 2.5,
@@ -169,36 +169,14 @@ const HomePage = ({ user, theme, setTheme }: HomePageProps): JSX.Element => {
                     <ListItemText primary={`Location: ${profile.location}`} primaryTypographyProps={{ fontSize: '0.85rem' }} />
                   </ListItem>
                 )}
-                {profile?.githubUrl && (
-                  <ListItem disablePadding sx={{ py: 0.5 }}>
-                    <ListItemIcon sx={{ minWidth: 28, color: '#00ffff' }}>
-                      <GitHubIcon fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <MuiLink
-                          href={profile.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          sx={{ color: '#00ffff', textDecoration: 'underline' }}
-                        >
-                          GitHub Profile
-                        </MuiLink>
-                      }
-                      primaryTypographyProps={{ fontSize: '0.85rem' }}
-                    />
-                  </ListItem>
-                )}
-                {profile?.status && (
-                  <ListItem disablePadding sx={{ py: 0.5 }}>
-                    <ListItemIcon sx={{ minWidth: 28, color: '#ff00a0' }}>
-                      <InfoIcon fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText primary={`Status: ${profile.status}`} primaryTypographyProps={{ fontSize: '0.85rem', color: '#ff00a0' }} />
-                  </ListItem>
-                )}
                 {!profile && <Typography variant="caption">No info yet...</Typography>}
               </List>
+
+              <SpaceConsoleHero
+                githubName="KMStacker"
+                status={profile?.status}
+                githubUrl={profile?.githubUrl}
+              />
             </Paper>
           </Box>
 
