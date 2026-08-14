@@ -149,6 +149,7 @@ const SkillsPage = (): JSX.Element => {
               }}
             >
               <IconButton
+                aria-label="Previous skill"
                 onClick={handlePrevious}
                 sx={{
                   color: '#00ffff',
@@ -224,6 +225,7 @@ const SkillsPage = (): JSX.Element => {
               </Paper>
 
               <IconButton
+                aria-label="Next skill"
                 onClick={handleNext}
                 sx={{
                   color: '#00ffff',

@@ -153,6 +153,7 @@ const ProjectsPage = (): JSX.Element => {
               }}
             >
               <IconButton
+                aria-label="Previous project"
                 onClick={handlePrevious}
                 sx={{
                   color: '#00ffff',
@@ -257,6 +258,7 @@ const ProjectsPage = (): JSX.Element => {
               </Paper>
 
               <IconButton
+                aria-label="Next project"
                 onClick={handleNext}
                 sx={{
                   color: '#00ffff',

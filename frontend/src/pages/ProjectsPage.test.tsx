@@ -33,14 +33,15 @@ describe('ProjectsPage', () => {
     render(<ProjectsPage />)
     const projectTitles = await screen.findAllByText('First App')
     expect(projectTitles.length).toBeGreaterThan(0)
-    expect(screen.getByText('Projects Showcase')).toBeInTheDocument()
+    expect(screen.getByText(/PROJECTS\/\/SHOWCASE/i)).toBeInTheDocument()
   })
 
   test('displays first project details by default', async () => {
     render(<ProjectsPage />)
     await screen.findAllByText('First App')
     expect(screen.getByText('First description')).toBeInTheDocument()
-    expect(screen.getByText('Node, React')).toBeInTheDocument()
+    expect(screen.getByText('Node')).toBeInTheDocument()
+    expect(screen.getByText('React')).toBeInTheDocument()
   })
 
   test('navigates between projects when clicking the next and previous buttons', async () => {
@@ -52,7 +53,7 @@ describe('ProjectsPage', () => {
 
     expect(screen.getByText('Second description')).toBeInTheDocument()
 
-    const prevButton = screen.getByRole('button', { name: '←' })
+    const prevButton = screen.getByRole('button', { name: /previous project/i })
     await userEvent.click(prevButton)
 
     expect(screen.getByText('First description')).toBeInTheDocument()

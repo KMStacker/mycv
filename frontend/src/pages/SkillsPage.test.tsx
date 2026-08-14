@@ -31,14 +31,14 @@ describe('SkillsPage', () => {
     render(<SkillsPage />)
     const skillNames = await screen.findAllByText('GoLang')
     expect(skillNames.length).toBeGreaterThan(0)
-    expect(screen.getByText('Skills Showcase')).toBeInTheDocument()
+    expect(screen.getByText(/SKILLS\/\/SHOWCASE/i)).toBeInTheDocument()
   })
 
   test('displays first skill details by default', async () => {
     render(<SkillsPage />)
     await screen.findAllByText('GoLang')
-    expect(screen.getByText('Expert')).toBeInTheDocument()
-    expect(screen.getByText('Backend')).toBeInTheDocument()
+    expect(screen.getByText(/LEVEL:\s*Expert/i)).toBeInTheDocument()
+    expect(screen.getByText(/USED ON:\s*Backend/i)).toBeInTheDocument()
   })
 
   test('navigates between skills when clicking the next and previous buttons', async () => {
@@ -48,12 +48,12 @@ describe('SkillsPage', () => {
     const reactSidebarButton = screen.getByRole('button', { name: 'React' })
     await userEvent.click(reactSidebarButton)
 
-    expect(screen.getByText('Intermediate')).toBeInTheDocument()
-    expect(screen.getByText('Frontend')).toBeInTheDocument()
+    expect(screen.getByText(/LEVEL:\s*Intermediate/i)).toBeInTheDocument()
+    expect(screen.getByText(/USED ON:\s*Frontend/i)).toBeInTheDocument()
 
-    const prevButton = screen.getByRole('button', { name: '←' })
+    const prevButton = screen.getByRole('button', { name: /previous skill/i })
     await userEvent.click(prevButton)
 
-    expect(screen.getByText('Expert')).toBeInTheDocument()
+    expect(screen.getByText(/LEVEL:\s*Expert/i)).toBeInTheDocument()
   })
 })

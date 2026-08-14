@@ -32,7 +32,7 @@ beforeEach(() => {
 describe('GuestbookPage', () => {
   test('fetches and renders existing visitor comments', async () => {
     render(<GuestbookPage user={null} handleLogin={vi.fn()} />)
-    expect(screen.getByText('Guestbook')).toBeInTheDocument()
+    expect(screen.getByText(/GUESTBOOK\/\/TRANSMISSIONS/i)).toBeInTheDocument()
     const comment = await screen.findByText(/Fun to be here!/)
     expect(comment).toBeInTheDocument()
     expect(screen.getByText('testuser1')).toBeInTheDocument()
