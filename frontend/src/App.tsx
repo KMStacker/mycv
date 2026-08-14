@@ -8,7 +8,9 @@ import {
   Button,
   Box,
   Container,
-  Chip
+  Chip,
+  IconButton,
+  Tooltip
 } from '@mui/material'
 import HomeIcon from '@mui/icons-material/Home'
 import CodeIcon from '@mui/icons-material/Code'
@@ -18,6 +20,8 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 import LoginIcon from '@mui/icons-material/Login'
 import LogoutIcon from '@mui/icons-material/Logout'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
+import LightModeIcon from '@mui/icons-material/LightMode'
+import DarkModeIcon from '@mui/icons-material/DarkMode'
 
 import HomePage from './pages/HomePage'
 import ProjectsPage from './pages/ProjectsPage'
@@ -29,7 +33,7 @@ import loginService from './services/login'
 import RegisterForm from './components/RegisterForm'
 import SparkleOverlay from './components/SparkleOverlay'
 
-export type AppTheme = 'nightsky' | 'golden' | 'rainbow'
+export type AppTheme = 'nightsky' | 'daysky'
 
 interface User {
   username: string
@@ -52,7 +56,7 @@ const App = (): JSX.Element => {
     }
 
     const savedTheme = window.localStorage.getItem('appTheme') as AppTheme
-    if (savedTheme) {
+    if (savedTheme === 'daysky' || savedTheme === 'nightsky') {
       setTheme(savedTheme)
     }
   }, [])
@@ -80,11 +84,11 @@ const App = (): JSX.Element => {
       <AppBar
         position="sticky"
         sx={{
-          background: 'rgba(10, 5, 20, 0.75)',
+          background: theme === 'daysky' ? 'rgba(255, 255, 255, 0.85)' : 'rgba(10, 5, 20, 0.75)',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
-          borderBottom: '2px solid rgba(0, 255, 255, 0.4)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 255, 255, 0.3)',
+          borderBottom: theme === 'daysky' ? '2px solid rgba(2, 132, 199, 0.4)' : '2px solid rgba(0, 255, 255, 0.4)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
           mb: 3
         }}
       >
@@ -99,13 +103,12 @@ const App = (): JSX.Element => {
                   mr: 2,
                   fontFamily: '"Orbitron", sans-serif',
                   fontWeight: 900,
-                  color: '#00ffff',
+                  color: theme === 'daysky' ? '#0284c7' : '#00ffff',
                   textDecoration: 'none',
-                  textShadow: '0 0 10px rgba(0, 255, 255, 0.8)',
+                  textShadow: theme === 'daysky' ? '0 0 10px rgba(2, 132, 199, 0.4)' : '0 0 10px rgba(0, 255, 255, 0.8)',
                   letterSpacing: '2px',
                   '&:hover': {
-                    color: '#ff00a0',
-                    textShadow: '0 0 10px rgba(255, 0, 160, 0.8)'
+                    color: '#ff00a0'
                   }
                 }}
               >
@@ -116,7 +119,7 @@ const App = (): JSX.Element => {
                 component={Link}
                 to="/"
                 startIcon={<HomeIcon />}
-                sx={{ color: '#ffffff', '&:hover': { color: '#00ffff' } }}
+                sx={{ color: theme === 'daysky' ? '#0f172a' : '#ffffff', '&:hover': { color: '#0284c7' } }}
               >
                 Home
               </Button>
@@ -124,7 +127,7 @@ const App = (): JSX.Element => {
                 component={Link}
                 to="/projects"
                 startIcon={<CodeIcon />}
-                sx={{ color: '#ffffff', '&:hover': { color: '#00ffff' } }}
+                sx={{ color: theme === 'daysky' ? '#0f172a' : '#ffffff', '&:hover': { color: '#0284c7' } }}
               >
                 Projects
               </Button>
@@ -132,7 +135,7 @@ const App = (): JSX.Element => {
                 component={Link}
                 to="/skills"
                 startIcon={<BuildIcon />}
-                sx={{ color: '#ffffff', '&:hover': { color: '#00ffff' } }}
+                sx={{ color: theme === 'daysky' ? '#0f172a' : '#ffffff', '&:hover': { color: '#0284c7' } }}
               >
                 Skills
               </Button>
@@ -140,7 +143,7 @@ const App = (): JSX.Element => {
                 component={Link}
                 to="/guestbook"
                 startIcon={<BookIcon />}
-                sx={{ color: '#ffffff', '&:hover': { color: '#00ffff' } }}
+                sx={{ color: theme === 'daysky' ? '#0f172a' : '#ffffff', '&:hover': { color: '#0284c7' } }}
               >
                 Guestbook
               </Button>
@@ -163,17 +166,46 @@ const App = (): JSX.Element => {
               )}
             </Box>
 
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: { xs: 1, sm: 0 } }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mt: { xs: 1, sm: 0 } }}>
+              <Box sx={{ display: 'flex', gap: 0.5 }}>
+                <Tooltip title="Night Sky Theme">
+                  <IconButton
+                    size="small"
+                    onClick={() => setTheme('nightsky')}
+                    sx={{
+                      color: theme === 'nightsky' ? '#00ffff' : '#aaa',
+                      border: theme === 'nightsky' ? '1px solid #00ffff' : '1px solid transparent',
+                      bgcolor: theme === 'nightsky' ? 'rgba(0, 255, 255, 0.15)' : 'transparent'
+                    }}
+                  >
+                    <DarkModeIcon fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+
+                <Tooltip title="Day Sky Theme">
+                  <IconButton
+                    size="small"
+                    onClick={() => setTheme('daysky')}
+                    sx={{
+                      color: theme === 'daysky' ? '#0284c7' : '#aaa',
+                      border: theme === 'daysky' ? '1px solid #0284c7' : '1px solid transparent',
+                      bgcolor: theme === 'daysky' ? 'rgba(2, 132, 199, 0.15)' : 'transparent'
+                    }}
+                  >
+                    <LightModeIcon fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+              </Box>
+
               {user ? (
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                   <Chip
                     label={`USER: ${user.username}`}
                     size="small"
                     sx={{
-                      bgcolor: 'rgba(0, 255, 102, 0.15)',
-                      color: '#00ff66',
-                      border: '1px solid rgba(0, 255, 102, 0.5)',
-                      boxShadow: '0 0 8px rgba(0, 255, 102, 0.4)',
+                      bgcolor: theme === 'daysky' ? 'rgba(2, 132, 199, 0.15)' : 'rgba(0, 255, 102, 0.15)',
+                      color: theme === 'daysky' ? '#0284c7' : '#00ff66',
+                      border: theme === 'daysky' ? '1px solid rgba(2, 132, 199, 0.5)' : '1px solid rgba(0, 255, 102, 0.5)',
                       fontWeight: 'bold',
                       fontFamily: 'monospace'
                     }}
@@ -196,12 +228,11 @@ const App = (): JSX.Element => {
                     startIcon={<LoginIcon />}
                     size="small"
                     sx={{
-                      color: '#00ff66',
-                      borderColor: 'rgba(0, 255, 102, 0.5)',
+                      color: theme === 'daysky' ? '#0284c7' : '#00ff66',
+                      borderColor: theme === 'daysky' ? 'rgba(2, 132, 199, 0.5)' : 'rgba(0, 255, 102, 0.5)',
                       '&:hover': {
-                        borderColor: '#00ff66',
-                        bgcolor: 'rgba(0, 255, 102, 0.15)',
-                        boxShadow: '0 0 12px rgba(0, 255, 102, 0.6)'
+                        borderColor: theme === 'daysky' ? '#0284c7' : '#00ff66',
+                        bgcolor: theme === 'daysky' ? 'rgba(2, 132, 199, 0.15)' : 'rgba(0, 255, 102, 0.15)'
                       }
                     }}
                   >
@@ -224,7 +255,7 @@ const App = (): JSX.Element => {
       </AppBar>
 
       <Routes>
-        <Route path="/" element={<HomePage user={user} theme={theme} setTheme={setTheme} />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/skills" element={<SkillsPage />} />
         <Route path="/admin" element={<AdminPage user={user} />} />

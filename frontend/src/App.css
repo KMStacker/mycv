@@ -78,7 +78,7 @@
 
 .home-profile-card h3,
 .home-contact-card h3 {
-  color: var(--text-highlight);
+  color: var(--color-highlight-primary);
   margin-top: 0;
   margin-bottom: 10px;
   font-size: 1.1rem;
@@ -102,7 +102,7 @@
 }
 
 .contact-link {
-  color: var(--text-highlight);
+  color: var(--color-highlight-primary);
   text-decoration: underline;
 }
 
@@ -362,14 +362,14 @@
 }
 
 .showcase-description {
-  color: var(--text-highlight);
+  color: var(--color-highlight-primary);
   line-height: 1.6;
   margin-bottom: 2rem;
 }
 
 .showcase-tech {
   font-size: 0.95rem;
-  color: var(--text-highlight);
+  color: var(--color-highlight-primary);
   margin-top: 3rem;
   margin-bottom: 5px;
 }
@@ -400,7 +400,7 @@
 }
 
 .showcase-nav-list.active {
-  background-color: var(--text-highlight);
+  background-color: var(--color-highlight-primary);
   transform: scale(1.2);
 }
 
@@ -440,7 +440,7 @@
   margin-top: 0;
   margin-bottom: 24px;
   font-size: 1.25rem;
-  color: var(--text-highlight);
+  color: var(--color-highlight-primary);
   border-bottom: 1px solid var(--box-border);
   padding-bottom: 12px;
 }
@@ -460,7 +460,7 @@
   font-size: 1rem;
   font-weight: 600;
   margin: 0;
-  color: var(--text-highlight);
+  color: var(--color-highlight-primary);
 }
 
 .inline-header-row {

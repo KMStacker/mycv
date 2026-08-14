@@ -838,7 +838,7 @@ const AdminPage = ({ user }: AdminPageProps): JSX.Element => {
               </button>
               {visibleUserInfos.includes(u.id) && (
                 <div
-                  style={{ fontSize: '0.85rem', color: 'var(--text-highlight)', margin: '5px 0' }}
+                  style={{ fontSize: '0.85rem', color: 'var(--text-highlight-primary)', margin: '5px 0' }}
                 >
                   {u.fullName || u.email || u.phone ? (
                     <>

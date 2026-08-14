@@ -26,11 +26,8 @@ const SparkleOverlay = (): JSX.Element => {
 
     const getPaletteColors = (): string[] => {
       const bodyClass = document.body.className
-      if (bodyClass.includes('theme-golden')) {
-        return ['#ffd700', '#ff8c00', '#ffc0cb', '#ffffff', '#e3c88e']
-      }
-      if (bodyClass.includes('theme-rainbow')) {
-        return ['#ff0055', '#00ff66', '#00ffff', '#ff00a0', '#ffff00', '#ffffff']
+      if (bodyClass.includes('theme-daysky')) {
+        return ['#0284c7', '#38bdf8', '#fbbf24', '#ffffff', '#0369a1']
       }
       return ['#00ff66', '#00ffff', '#ff00a0', '#ffffff', '#ffd700']
     }
