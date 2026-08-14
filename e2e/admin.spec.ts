@@ -38,7 +38,8 @@ test.describe('Admin Dashboard Flow', () => {
     await sharedPage.getByPlaceholder('Username').fill(adminUsername)
     await sharedPage.getByPlaceholder('Password', { exact: true }).fill(adminPassword)
     await sharedPage.locator('form').getByRole('button', { name: 'Login', exact: true }).click()
-    await expect(sharedPage.getByText(`Welcome, ${adminUsername}!`)).toBeVisible()
+    await expect(sharedPage.getByText(`USER: ${adminUsername}`)).toBeVisible()
+    await expect(sharedPage.getByRole('link', { name: 'Admin', exact: true })).toBeVisible()
   })
 
   test('should navigate to admin page and create a new project', async () => {
@@ -58,7 +59,7 @@ test.describe('Admin Dashboard Flow', () => {
       if (await projectHeading.isVisible()) {
         break
       }
-      await sharedPage.getByRole('button', { name: '→' }).click()
+      await sharedPage.getByRole('button', { name: /next project/i }).click()
     }
 
     await expect(projectHeading).toBeVisible()

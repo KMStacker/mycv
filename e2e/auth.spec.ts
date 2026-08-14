@@ -18,7 +18,8 @@ test.describe('Authentication Flow', () => {
     await expect(page.getByText('Registration successful!')).toBeVisible()
     await page.getByRole('button', { name: 'Yes' }).click()
 
-    await expect(page.getByText(`Welcome, ${username}!`)).toBeVisible()
+    await expect(page.getByText(`USER: ${username}`)).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Logout' })).toBeVisible()
   })
 
   test('should show error for non-matching passwords', async ({ page }) => {
@@ -50,7 +51,7 @@ test.describe('Authentication Flow', () => {
     await page.getByPlaceholder('Password', { exact: true }).fill(password)
     await page.locator('form').getByRole('button', { name: 'Login', exact: true }).click()
 
-    await expect(page.getByText(`Welcome, ${testUser}!`)).toBeVisible()
+    await expect(page.getByText(`USER: ${testUser}`)).toBeVisible()
 
     await page.getByRole('button', { name: 'Logout' }).click()
     await expect(page.getByRole('button', { name: 'Login', exact: true })).toBeVisible()
