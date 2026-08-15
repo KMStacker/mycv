@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { expect, test, describe, vi, beforeEach } from 'vitest'
 import axios from 'axios'
 import HomePage from './HomePage'
@@ -21,12 +22,13 @@ beforeEach(() => {
 })
 
 describe('HomePage', () => {
-  test('renders welcome heading and introduction text', async () => {
+  test('renders welcome heading and initial idle terminal state', () => {
     render(<HomePage />)
     expect(screen.getByText(/WELCOME\/\/TO MY-CV/i)).toBeInTheDocument()
-    expect(
-      screen.getByText(/Welcome to My CV portfolio! Feel free to look around and leave a message in the Guestbook!/i)
-    ).toBeInTheDocument()
+    expect(screen.getByText('SYS_TERMINAL_CONSOLE//')).toBeInTheDocument()
+    expect(screen.getByText('READY')).toBeInTheDocument()
+    expect(screen.getByText('> run welcome_msg.sh')).toBeInTheDocument()
+    expect(screen.getByText('Press RUN to execute script...')).toBeInTheDocument()
   })
 
   test('fetches and renders about me section content', async () => {
@@ -57,5 +59,32 @@ describe('HomePage', () => {
     render(<HomePage profileData={mockProfile} />)
     expect(screen.getByText(/OPERATIVE_STATUS_CONSOLE\/\//i)).toBeInTheDocument()
     expect(screen.getByText(/ONLINE/i)).toBeInTheDocument()
+  })
+
+  test('executes welcome message stream when RUN button is clicked', async () => {
+    const user = userEvent.setup()
+    render(<HomePage profileData={mockProfile} />)
+
+    const runButton = screen.getByRole('button', { name: /run/i })
+    expect(runButton).toBeInTheDocument()
+
+    await user.click(runButton)
+
+    await waitFor(
+      () => {
+        expect(screen.getByText('Welcome to My CV portfolio!')).toBeInTheDocument()
+      },
+      { timeout: 3000 }
+    )
+
+    await waitFor(
+      () => {
+        expect(
+          screen.getByText('Feel free to look around and leave a message in the Guestbook...')
+        ).toBeInTheDocument()
+        expect(screen.getByText('EXEC: OK')).toBeInTheDocument()
+      },
+      { timeout: 4000 }
+    )
   })
 })
