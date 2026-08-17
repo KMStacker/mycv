@@ -154,7 +154,7 @@ const HomePage = ({ profileData }: HomePageProps): JSX.Element => {
                 justifyContent: 'space-between',
                 px: 2,
                 py: 1,
-                bgcolor: 'rgba(0, 0, 0, 0.25)',
+                bgcolor: 'var(--bg-color)',
                 borderBottom: '1px solid var(--box-border)'
               }}
             >
@@ -264,7 +264,8 @@ const HomePage = ({ profileData }: HomePageProps): JSX.Element => {
                 <Typography
                   variant="body2"
                   sx={{
-                    color: 'rgba(255, 255, 255, 0.4)',
+                    color: 'var(--text-main)',
+                    opacity: 0.5,
                     fontFamily: '"Courier New", Courier, monospace',
                     fontStyle: 'italic'
                   }}
@@ -308,7 +309,7 @@ const HomePage = ({ profileData }: HomePageProps): JSX.Element => {
                   <Typography
                     variant="body2"
                     sx={{
-                      color: 'var(--color-highlight)',
+                      color: 'var(--color-highlight-primary)',
                       fontFamily: '"Courier New", Courier, monospace',
                       lineHeight: 1.6
                     }}
@@ -321,7 +322,7 @@ const HomePage = ({ profileData }: HomePageProps): JSX.Element => {
                           display: 'inline-block',
                           width: '8px',
                           height: '12px',
-                          bgcolor: 'var(--color-highlight)',
+                          bgcolor: 'var(--color-highlight-primary)',
                           ml: 0.5,
                           animation: 'terminalBlink 0.8s infinite',
                           '@keyframes terminalBlink': {
