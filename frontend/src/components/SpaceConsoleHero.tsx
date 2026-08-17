@@ -44,7 +44,10 @@ const SpaceConsoleHero = ({
       sx={{
         p: 2,
         mt: 1,
-        bgcolor: powerOn ? 'rgba(5, 20, 12, 0.9)' : 'rgba(5, 5, 8, 0.95)',
+        bgcolor: powerOn ? 'rgba(5, 20, 12, 0.45)' : 'rgba(5, 5, 8, 0.55)',
+        backgroundImage: 'none !important',
+        backdropFilter: 'blur(5px)',
+        WebkitBackdropFilter: 'blur(5px)',
         border: `1px solid ${powerOn ? '#00ff66' : 'rgba(255, 0, 160, 0.3)'}`,
         boxShadow: powerOn
           ? 'inset 0 0 15px rgba(0, 255, 102, 0.15), 0 0 12px rgba(0, 255, 102, 0.25)'

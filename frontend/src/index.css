@@ -1,5 +1,13 @@
 :root {
-  --bg-gradient: radial-gradient(circle at 50% 20%, #0a1f14 0%, #040c08 60%, #010503 100%);
+  --bg-image-landscape: url('/background-landscape.jpg');
+  --bg-image-portrait: url('/background-portrait.jpg');
+  --bg-image: var(--bg-image-landscape);
+  --bg-gradient: radial-gradient(
+    circle at 50% 20%,
+    rgba(10, 31, 20, 0.2) 0%,
+    rgba(4, 12, 8, 0.35) 60%,
+    rgba(1, 5, 3, 0.45) 100%
+  );
   --btn-bg: linear-gradient(90deg, #00ff66 0%, #00ffff 50%, #ff00a0 100%);
   --btn-border: #00ff66;
   --btn-text: #ffffff;
@@ -11,20 +19,31 @@
   --color-highlight-secondary: #00ffff;
   --color-highlight-tertiary: #ff00a0;
   --border-highlight: #00ffff;
-  --input-bg: rgba(5, 20, 12, 0.7);
+  --input-bg: rgba(5, 20, 12, 0.25);
   --input-border: rgba(0, 255, 102, 0.4);
   --input-border-focus: #00ff66;
   --modal-bg: rgba(8, 25, 15, 0.95);
   --text-main: #ffffff;
   --card-gradient: linear-gradient(
     135deg,
-    rgba(10, 35, 20, 0.75) 0%,
-    rgba(5, 20, 10, 0.85) 100%
+    rgba(10, 35, 20, 0.25) 0%,
+    rgba(5, 20, 10, 0.35) 100%
   );
 }
 
+@media (orientation: portrait) {
+  :root {
+    --bg-image: var(--bg-image-portrait);
+  }
+}
+
 body.theme-daysky {
-  --bg-gradient: radial-gradient(circle at 50% 20%, #e0f2fe 0%, #bae6fd 60%, #7dd3fc 100%);
+  --bg-gradient: radial-gradient(
+    circle at 50% 20%,
+    rgba(224, 242, 254, 0.3) 0%,
+    rgba(186, 230, 253, 0.4) 60%,
+    rgba(125, 211, 252, 0.5) 100%
+  );
   --btn-bg: linear-gradient(90deg, #0284c7 0%, #0369a1 50%, #0f172a 100%);
   --btn-border: #0284c7;
   --btn-text: #ffffff;
@@ -36,36 +55,57 @@ body.theme-daysky {
   --color-highlight-secondary: #0369a1;
   --color-highlight-tertiary: #0f172a;
   --border-highlight: #0284c7;
-  --input-bg: rgba(255, 255, 255, 0.85);
+  --input-bg: rgba(255, 255, 255, 0.3);
   --input-border: rgba(2, 132, 199, 0.4);
   --input-border-focus: #0284c7;
   --modal-bg: rgba(240, 249, 255, 0.95);
   --text-main: #0f172a;
   --card-gradient: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(224, 242, 254, 0.9) 100%
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(224, 242, 254, 0.45) 100%
   );
 }
 
 body {
   margin: 0;
   font-family: sans-serif;
-  background: #484b4f;
-  background-image: var(--bg-gradient);
-  background-size: 300% 300%;
-  animation: moveBackground 45s ease infinite;
-  background-attachment: fixed;
+  background-color: #040c08;
   color: var(--text-main);
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
-  transition: background-image 0.5s ease;
 }
 
-body::before,
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: var(--bg-image);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -3;
+  pointer-events: none;
+  transition: background-image 0.4s ease-in-out;
+}
+
 body::after {
-  display: none;
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: var(--bg-gradient);
+  background-size: 300% 300%;
+  animation: moveBackground 45s ease infinite;
+  z-index: -2;
+  pointer-events: none;
+  transition: background-image 0.5s ease;
 }
 
 @keyframes moveBackground {

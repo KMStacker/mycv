@@ -101,9 +101,12 @@ const HomePage = ({ profileData }: HomePageProps): JSX.Element => {
         elevation={10}
         sx={{
           p: { xs: 2, sm: 4 },
-          bgcolor: 'var(--card-gradient)',
-          border: '1px solid var(--box-border)',
-          boxShadow: '0 12px 40px rgba(0,0,0,0.5)'
+          bgcolor: 'transparent',
+          backgroundImage: 'var(--card-gradient) !important',
+          backdropFilter: 'blur(1px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          border: '2px solid var(--box-border)',
+          boxShadow: '0 12px 40px rgba(0, 0, 0, 0.9)'
         }}
       >
         <Typography
@@ -135,8 +138,11 @@ const HomePage = ({ profileData }: HomePageProps): JSX.Element => {
             sx={{
               p: 0,
               bgcolor: 'var(--input-bg)',
+              backgroundImage: 'none !important',
+              backdropFilter: 'blur(5px)',
+              WebkitBackdropFilter: 'blur(5px)',
               border: '1px solid var(--box-border)',
-              boxShadow: 'inset 0 0 15px rgba(0,0,0,0.2)',
+              boxShadow: 'inset 0 0 15px rgba(0, 0, 0, 0.2)',
               boxSizing: 'border-box',
               overflow: 'hidden'
             }}
@@ -335,8 +341,11 @@ const HomePage = ({ profileData }: HomePageProps): JSX.Element => {
             sx={{
               p: 2.5,
               bgcolor: 'var(--input-bg)',
+              backgroundImage: 'none !important',
+              backdropFilter: 'blur(5px)',
+              WebkitBackdropFilter: 'blur(5px)',
               border: '1px solid var(--box-border)',
-              boxShadow: 'inset 0 0 15px rgba(0,0,0,0.2)',
+              boxShadow: 'inset 0 0 15px rgba(0, 0, 0, 0.2)',
               boxSizing: 'border-box'
             }}
           >
@@ -363,8 +372,11 @@ const HomePage = ({ profileData }: HomePageProps): JSX.Element => {
             sx={{
               p: 2.5,
               bgcolor: 'var(--input-bg)',
+              backgroundImage: 'none !important',
+              backdropFilter: 'blur(5px)',
+              WebkitBackdropFilter: 'blur(5px)',
               border: '1px solid var(--box-border)',
-              boxShadow: 'inset 0 0 15px rgba(0,0,0,0.2)',
+              boxShadow: 'inset 0 0 15px rgba(0, 0, 0, 0.2)',
               boxSizing: 'border-box'
             }}
           >
