@@ -17,7 +17,7 @@ export const retroTheme = createTheme({
     },
     background: {
       default: '#08040c',
-      paper: 'rgba(15, 8, 30, 0.75)'
+      paper: 'rgba(15, 8, 30, 0.35)'
     },
     text: {
       primary: '#ffffff',
@@ -61,10 +61,11 @@ export const retroTheme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          backdropFilter: 'blur(16px)',
-          WebkitBackdropFilter: 'blur(16px)',
+          backgroundImage: 'none',
+          backdropFilter: 'blur(6px)',
+          WebkitBackdropFilter: 'blur(6px)',
           border: '1px solid rgba(0, 255, 255, 0.3)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 0, 160, 0.3)'
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 0, 160, 0.2)'
         }
       }
     }
