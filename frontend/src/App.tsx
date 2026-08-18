@@ -22,6 +22,8 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
+import VideogameAssetIcon from '@mui/icons-material/VideogameAsset'
+import XoxoPage from './pages/XoxoPage'
 
 import HomePage from './pages/HomePage'
 import ProjectsPage from './pages/ProjectsPage'
@@ -147,6 +149,14 @@ const App = (): JSX.Element => {
               >
                 Guestbook
               </Button>
+              <Button
+                component={Link}
+                to="/xoxo"
+                startIcon={<VideogameAssetIcon />}
+                sx={{ color: theme === 'daysky' ? '#0f172a' : '#ffffff', '&:hover': { color: '#0284c7' } }}
+              >
+                XOXO-Game
+              </Button>
               {user && user.role === 'ADMIN' && (
                 <Button
                   component={Link}
@@ -263,6 +273,7 @@ const App = (): JSX.Element => {
           path="/guestbook"
           element={<GuestbookPage user={user} handleLogin={handleLogin} />}
         />
+        <Route path="/xoxo" element={<XoxoPage />} />
       </Routes>
 
       {showLoginModal && (
