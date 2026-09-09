@@ -25,7 +25,7 @@ import {
   BOARD_SIZE
 } from '../xoxo/xoxoEngine'
 
-const GamePage = (): JSX.Element => {
+const XoxoPage = (): JSX.Element => {
   const [board, setBoard] = useState<BoardState>(() => createEmptyBoard())
   const [possibleMoves, setPossibleMoves] = useState<Set<string>>(new Set())
   const [status, setStatus] = useState<'PLAYING' | 'PLAYER_WON' | 'AI_WON' | 'DRAW'>('PLAYING')
@@ -135,7 +135,7 @@ const GamePage = (): JSX.Element => {
         </Typography>
 
         <Typography variant="body2" align="center" sx={{ color: '#aaa', mb: 3 }}>
-          20x20 Five-in-a-row against Minimax AI with Alpha-Beta Pruning. Form 5 in a row to win!
+          21x21 Five-in-a-row against Minimax AI with Alpha-Beta Pruning. Form 5 in a row to win!
         </Typography>
 
         <Box
@@ -180,14 +180,6 @@ const GamePage = (): JSX.Element => {
                 fontFamily: 'monospace'
               }}
             />
-            {isAiThinking && (
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <CircularProgress size={18} sx={{ color: '#ff00a0' }} />
-                <Typography variant="caption" sx={{ color: '#ff00a0', fontFamily: 'monospace' }}>
-                  AI CALCULATING...
-                </Typography>
-              </Box>
-            )}
           </Box>
 
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -262,7 +254,7 @@ const GamePage = (): JSX.Element => {
         <Box
           sx={{
             overflowX: 'auto',
-            pb: 2,
+            pb: 1,
             display: 'flex',
             justifyContent: 'center'
           }}
@@ -318,9 +310,28 @@ const GamePage = (): JSX.Element => {
             )}
           </Box>
         </Box>
+        <Box
+          sx={{
+            minHeight: 28,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 1,
+            mt: 2
+          }}
+        >
+          {isAiThinking && (
+            <>
+              <CircularProgress size={18} sx={{ color: '#ff00a0' }} />
+              <Typography variant="caption" sx={{ color: '#ff00a0', fontFamily: 'monospace' }}>
+                AI CALCULATING...
+              </Typography>
+            </>
+          )}
+        </Box>
       </Paper>
     </Container>
   )
 }
 
-export default GamePage
+export default XoxoPage

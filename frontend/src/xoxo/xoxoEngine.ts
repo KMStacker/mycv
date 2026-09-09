@@ -4,7 +4,7 @@ export type CellValue = ' ' | 'X' | 'O'
 export type BoardState = CellValue[][]
 export type Coordinate = [number, number]
 
-export const BOARD_SIZE = 20
+export const BOARD_SIZE = 21
 
 export const createEmptyBoard = (size: number = BOARD_SIZE): BoardState => {
   return Array.from({ length: size }, () => Array.from({ length: size }, () => ' '))

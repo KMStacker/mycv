@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { expect, test, describe } from 'vitest'
 import XoxoPage from './XoxoPage'
 
-describe('GamePage Component', () => {
+describe('XoxoPage Component', () => {
   test('renders game arena title and status chips', () => {
     render(<XoxoPage />)
     screen.debug()
