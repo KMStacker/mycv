@@ -38,15 +38,79 @@ const seedDatabase = async (): Promise<void> => {
         {
           title: 'MyCV Fullstack Application',
           description:
-            'A comprehensive portfolio web application with a custom admin panel, reactive layout themes, and a visitor guestbook.',
-          technologies: 'React, TypeScript, Node.js, Express, PostgreSQL, Docker',
+            'Modern fullstack CV and portfolio web application built with React, TypeScript, Node.js, Vite, and PostgreSQL. Includes Material UI components, containerized Docker deployment, and automated Vitest tests.',
+          technologies: 'React, TypeScript, Node.js, Express, PostgreSQL, Vite, Docker, Vitest, Material UI',
           githubUrl: 'https://github.com/KMStacker/mycv'
         },
         {
+          title: 'Service Keepalive',
+          description:
+            'Lightweight Go worker running on GitHub Actions to keep free-tier cloud services active.',
+          technologies: 'Go, GitHub Actions, CI/CD',
+          githubUrl: 'https://github.com/KMStacker/service-keepalive'
+        },
+        {
+          title: 'Feature Flag Management System',
+          description:
+            'A scalable feature flag platform group project developed for Elisa Oyj, highlighting backend microservice architecture and OpenFeature SDK integrations.',
+          technologies: 'Go, React, PostgreSQL, Docker, OpenShift, OpenFeature',
+          githubUrl: 'https://github.com/KMStacker/feature-flag-management-system'
+        },
+        {
+          title: 'Five-in-a-Row (TypeScript)',
+          description:
+            'A TypeScript version of a Five-in-a-Row game, built for the MyCV web app and based on an original Python university project.',
+          technologies: 'TypeScript, React, Vite, Vitest',
+          githubUrl: 'https://github.com/KMStacker/xoxo-game-typescript'
+        },
+        {
+          title: 'Spot Price Optimizer',
+          description:
+            'Electricity spot price optimizer and ETL pipeline built with FastAPI, PostgreSQL, Pandas, and React.',
+          technologies: 'Python, FastAPI, Pandas, PostgreSQL, React, TypeScript',
+          githubUrl: 'https://github.com/KMStacker/spot-price-optimizer'
+        },
+        {
+          title: 'Full Stack Open Project',
+          description:
+            'Source code and documentation for the course project completed for the Full Stack Open course at the University of Helsinki.',
+          technologies: 'TypeScript, React, Node.js, Express, MongoDB, REST API',
+          githubUrl: 'https://github.com/KMStacker/fullstack-project'
+        },
+        {
+          title: 'Local Automation Scripts',
+          description:
+            'A collection of custom automation and utility scripts for local workflow optimization, file processing, and environment maintenance.',
+          technologies: 'Shell, Bash, Python, Linux',
+          githubUrl: 'https://github.com/KMStacker/scripts'
+        },
+        {
+          title: 'Cyber Security Base Project',
+          description:
+            'Course project demonstrating web application vulnerability discovery and mitigation for the University of Helsinki Cyber Security Base course.',
+          technologies: 'Python, Django, Web Security, OWASP',
+          githubUrl: 'https://github.com/KMStacker/csb-project'
+        },
+        {
           title: 'Party Planner App',
-          description: 'An app for planning parties with friends.',
-          technologies: 'Python, HTML, CSS',
+          description:
+            'A web application for organizing events, managing RSVPs, and tracking user availability.',
+          technologies: 'Python, Flask, SQLite, HTML, CSS',
           githubUrl: 'https://github.com/KMStacker/party-planner'
+        },
+        {
+          title: 'Five-in-a-Row AI (Tiralabra)',
+          description:
+            'A Python implementation of Five-in-a-Row powered by Minimax and Alpha-Beta pruning, developed for the Data Structures and Algorithms lab course.',
+          technologies: 'Python, Algorithms, Minimax, Alpha-Beta Pruning, Pytest',
+          githubUrl: 'https://github.com/KMStacker/Harjoitustyo_tiralabra_ristinolla'
+        },
+        {
+          title: 'Interactive Memory Card Game',
+          description:
+            'Python-based interactive memory card game managed with Poetry and Invoke, developed as a software engineering course project.',
+          technologies: 'Python, Pygame, Poetry, Invoke, Unittest',
+          githubUrl: 'https://github.com/KMStacker/ot-harjoitustyo'
         }
       ])
       logger.info('Projects seeded successfully.')
@@ -65,14 +129,54 @@ const seedDatabase = async (): Promise<void> => {
           usedOn: 'Frontend & Backend'
         },
         {
+          name: 'JavaScript',
+          level: 'Advanced',
+          usedOn: 'Frontend & Backend'
+        },
+        {
           name: 'React',
           level: 'Advanced',
           usedOn: 'Frontend'
         },
         {
-          name: 'PostgreSQL',
+          name: 'Node.js',
           level: 'Advanced',
           usedOn: 'Backend'
+        },
+        {
+          name: 'Express',
+          level: 'Advanced',
+          usedOn: 'Backend'
+        },
+        {
+          name: 'Python',
+          level: 'Advanced',
+          usedOn: 'Backend & Data/Scripting'
+        },
+        {
+          name: 'FastAPI',
+          level: 'Intermediate',
+          usedOn: 'Backend'
+        },
+        {
+          name: 'Flask',
+          level: 'Intermediate',
+          usedOn: 'Backend'
+        },
+        {
+          name: 'PostgreSQL',
+          level: 'Advanced',
+          usedOn: 'Database'
+        },
+        {
+          name: 'MongoDB',
+          level: 'Intermediate',
+          usedOn: 'Database'
+        },
+        {
+          name: 'SQLite',
+          level: 'Intermediate',
+          usedOn: 'Database'
         },
         {
           name: 'Golang',
@@ -80,9 +184,34 @@ const seedDatabase = async (): Promise<void> => {
           usedOn: 'Backend'
         },
         {
-          name: 'Python',
+          name: 'Docker',
+          level: 'Intermediate',
+          usedOn: 'DevOps & Tooling'
+        },
+        {
+          name: 'GitHub Actions',
+          level: 'Intermediate',
+          usedOn: 'CI/CD'
+        },
+        {
+          name: 'Bash & Shell Scripting',
+          level: 'Intermediate',
+          usedOn: 'Tooling & Automation'
+        },
+        {
+          name: 'Vite',
           level: 'Advanced',
-          usedOn: 'Frontend & Backend'
+          usedOn: 'Frontend Tooling'
+        },
+        {
+          name: 'Vitest & Pytest',
+          level: 'Intermediate',
+          usedOn: 'Testing'
+        },
+        {
+          name: 'Pandas',
+          level: 'Intermediate',
+          usedOn: 'Data Processing'
         }
       ])
       logger.info('Skills seeded successfully.')
