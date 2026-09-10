@@ -169,7 +169,7 @@ const SkillsPage = (): JSX.Element => {
                 sx={{
                   flex: 1,
                   p: 4,
-                  minHeight: '220px',
+                  height: { xs: '260px', sm: '230px' },
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
@@ -178,7 +178,8 @@ const SkillsPage = (): JSX.Element => {
                   bgcolor: 'rgba(10, 5, 20, 0.85)',
                   border: '1px solid rgba(0, 255, 255, 0.4)',
                   boxShadow: 'inset 0 0 15px rgba(0,0,0,0.8), 0 0 15px rgba(255, 0, 160, 0.2)',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  boxSizing: 'border-box'
                 }}
               >
                 <Typography

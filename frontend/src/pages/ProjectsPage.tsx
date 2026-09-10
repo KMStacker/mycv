@@ -173,17 +173,31 @@ const ProjectsPage = (): JSX.Element => {
                 sx={{
                   flex: 1,
                   p: 3,
-                  minHeight: '260px',
+                  height: { xs: '380px', sm: '340px' },
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   bgcolor: 'rgba(10, 5, 20, 0.85)',
                   border: '1px solid rgba(255, 0, 160, 0.4)',
                   boxShadow: 'inset 0 0 15px rgba(0,0,0,0.8), 0 0 15px rgba(0, 255, 255, 0.2)',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  boxSizing: 'border-box'
                 }}
               >
-                <Box>
+                <Box
+                  sx={{
+                    flex: 1,
+                    overflowY: 'auto',
+                    pr: 1,
+                    '&::-webkit-scrollbar': {
+                      width: '6px'
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                      backgroundColor: 'rgba(255, 0, 160, 0.4)',
+                      borderRadius: '3px'
+                    }
+                  }}
+                >
                   <Typography
                     variant="h5"
                     sx={{
@@ -233,7 +247,7 @@ const ProjectsPage = (): JSX.Element => {
                   )}
                 </Box>
 
-                <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end' }}>
+                <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end', flexShrink: 0 }}>
                   {currentProject.githubUrl && (
                     <Button
                       component="a"
