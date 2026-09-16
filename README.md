@@ -10,14 +10,17 @@ MyCV is a full-stack personal portfolio and showcase web application built with 
 
 - **Projects & Skills Showcase:** Browse through interactive cards showcasing past software engineering projects and technical skills with navigation sliders and quick sidebar lists.
 - **Guestbook:** Post comments publicly or send private messages intended for the admin. Supports both registered user accounts and guest comments with custom suffix IDs.
-- **User Accounts & Themes:** Users can register and log in to unlock custom UI visual themes (**Golden** and **Rainbow**) and leave messages with additional information for the admin (eg. full name, email, phone number).
-- **Admin Panel:** Admin can create, edit, reorder, and delete projects and skills, edit profile information, moderate comments, delete users, and disable commenting privileges for specific users.
+- **User Accounts & Themes:** Switch between UI visual themes (**Night Sky** and **Day Sky**) directly from the top navigation bar. Users can register and log in to leave authenticated comments with optional contact details (e.g. full name, email, phone number).
+- **XOXO Game Arena:** Play 21x21 Five-in-a-Row against a Minimax AI with Alpha-Beta pruning and selectable difficulty levels.
+- **Admin Panel:** Admin can create, edit, reorder, and delete projects and skills, edit profile information, moderate comments, delete users, disable commenting privileges for specific accounts, and inspect visitor traffic analytics.
+
 
 ## Technologies Used
 
 #### Frontend
 
 - React & TypeScript (Vite)
+- Material UI (MUI)
 - React Router
 - Axios
 - Custom CSS & HTML5 Canvas
@@ -57,16 +60,22 @@ MyCV is a full-stack personal portfolio and showcase web application built with 
 ### User Account System & Visual Themes
 
 - **Authentication Workflow:** Secure user registration, password verification, and JWT session handling.
-- **Dynamic Layout Themes:** Registered users can switch between custom color modes (**Night Sky**, **Golden**, and **Rainbow**).
+- **Dynamic Layout Themes:** Toggle between responsive color modes (**Night Sky** and **Day Sky**) with retro styling.
 - **Canvas Particle Overlay:** Animated background canvas effect with floating sparkle particles.
 
 <img src="documentation/images/themes.png" alt="themes view" width="600" />
+
+### XOXO Game Arena (Five-in-a-Row AI)
+
+- **Minimax AI Engine:** Play on an expandable 21x21 board against a heuristic Minimax AI with Alpha-Beta pruning.
+- **Difficulty Configuration:** Selectable search depth levels (Depth 2, 3, and 4) with instant evaluation and win validation.
 
 ### Administrator Controls & Moderation
 
 - **Content Management:** Full CRUD interface for adding, editing, deleting, and reordering projects and skills.
 - **User Management:** Displays user engagement statistics and allows admins to restrict commenting privileges for specific accounts.
 - **Comment Moderation:** Administrative tools for deleting inappropriate guestbook entries.
+- **Visitor Analytics:** Real-time visit counts, 24-hour active traffic tracking, and country-level geographic statistics.
 
 <img src="documentation/images/admin-view.png" alt="Admin Panel Preview" width="600" />
 
@@ -105,3 +114,4 @@ Follow these steps to run the application locally on your machine.
 5. Create a .env file in the `backend` directory based on `.env.example` file
 6. Run `npm run dev` to start the application
 7. Go to site `http://localhost:5173` where the app is running
+
