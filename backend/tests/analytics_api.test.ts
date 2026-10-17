@@ -71,6 +71,39 @@ describe('analytics api integration tests', () => {
     expect(response.body.countryStats).toHaveLength(1)
     expect(response.body.countryStats[0].countryCode).toBe('FI')
   })
+
+  test('anyone can fetch public analytics summary without token', async () => {
+    await VisitorLog.create({
+      ipHash: 'hash1',
+      lastVisitedAt: new Date()
+    })
+    await VisitorLog.create({
+      ipHash: 'hash2',
+      lastVisitedAt: new Date()
+    })
+
+    await CountryStat.create({
+      countryCode: 'FI',
+      countryName: 'Finland',
+      visitCount: 5
+    })
+    await CountryStat.create({
+      countryCode: 'UNKNOWN',
+      countryName: 'Unknown Region',
+      visitCount: 1
+    })
+
+    const response = await api
+      .get('/api/analytics/public')
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+
+    expect(response.body).toEqual({
+      uniqueVisitors: 2,
+      countryCount: 1,
+      totalVisits: 6
+    })
+  })
 })
 
 afterAll(async () => {
