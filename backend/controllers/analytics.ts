@@ -37,4 +37,31 @@ analyticsRouter.get(
   }
 )
 
+analyticsRouter.get(
+  '/public',
+  async (_request: express.Request, response: express.Response, next: express.NextFunction) => {
+    try {
+      const uniqueVisitors = await VisitorLog.count()
+
+      const countryCount = await CountryStat.count({
+        where: {
+          countryCode: {
+            [Op.ne]: 'UNKNOWN'
+          }
+        }
+      })
+
+      const totalVisits = (await CountryStat.sum('visitCount')) || 0
+
+      return response.json({
+        uniqueVisitors,
+        countryCount,
+        totalVisits
+      })
+    } catch (error) {
+      return next(error)
+    }
+  }
+)
+
 export default analyticsRouter
