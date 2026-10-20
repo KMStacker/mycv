@@ -19,6 +19,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn'
 import InfoIcon from '@mui/icons-material/Info'
 import TerminalIcon from '@mui/icons-material/Terminal'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import PeopleIcon from '@mui/icons-material/People'
+import PublicIcon from '@mui/icons-material/Public'
 import SpaceConsoleHero from '../components/SpaceConsoleHero'
 
 interface ProfileData {
@@ -31,6 +33,12 @@ interface ProfileData {
   status: string
 }
 
+interface AnalyticsSummary {
+  uniqueVisitors: number
+  countryCount: number
+  totalVisits: number
+}
+
 interface HomePageProps {
   profileData?: ProfileData
 }
@@ -40,6 +48,7 @@ const HomePage = ({ profileData }: HomePageProps): JSX.Element => {
   const [typedLine1, setTypedLine1] = useState<string>('')
   const [typedLine2, setTypedLine2] = useState<string>('')
   const [executionStatus, setExecutionStatus] = useState<'IDLE' | 'RUNNING' | 'COMPLETED'>('IDLE')
+  const [analytics, setAnalytics] = useState<AnalyticsSummary | null>(null)
 
   const fullLine1 = 'Welcome to My CV portfolio!'
   const fullLine2 = 'Feel free to look around and leave a message in the Guestbook...'
@@ -94,6 +103,18 @@ const HomePage = ({ profileData }: HomePageProps): JSX.Element => {
     }
     void fetchProfile()
   }, [profileData])
+
+  useEffect(() => {
+    const fetchAnalytics = async (): Promise<void> => {
+      try {
+        const response = await axios.get<AnalyticsSummary>('/api/analytics/public')
+        setAnalytics(response.data)
+      } catch (error) {
+        console.error('Error fetching analytics:', error)
+      }
+    }
+    void fetchAnalytics()
+  }, [])
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
@@ -450,6 +471,47 @@ const HomePage = ({ profileData }: HomePageProps): JSX.Element => {
             />
           </Paper>
         </Box>
+        
+        {analytics && (
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: 1.5,
+              flexWrap: 'wrap',
+              mb: 4,
+              marginTop: 2
+            }}
+          >
+            <Chip
+              icon={<PeopleIcon sx={{ color: 'var(--color-highlight-secondary) !important' }} />}
+              label={`INDIVIDUAL USERS: ${analytics.uniqueVisitors}`}
+              size="small"
+              sx={{
+                bgcolor: 'var(--input-bg)',
+                color: 'var(--color-highlight-secondary)',
+                border: '1px solid var(--box-border)',
+                fontFamily: 'monospace',
+                fontWeight: 'bold',
+                letterSpacing: '0.5px'
+              }}
+            />
+            <Chip
+              icon={<PublicIcon sx={{ color: 'var(--color-highlight-primary) !important' }} />}
+              label={`LOCATIONS: ${analytics.countryCount} COUNTRIES`}
+              size="small"
+              sx={{
+                bgcolor: 'var(--input-bg)',
+                color: 'var(--color-highlight-primary)',
+                border: '1px solid var(--box-border)',
+                fontFamily: 'monospace',
+                fontWeight: 'bold',
+                letterSpacing: '0.5px'
+              }}
+            />
+          </Box>
+        )}
       </Paper>
     </Container>
   )
