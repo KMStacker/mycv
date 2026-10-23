@@ -16,9 +16,20 @@ const mockProfile = {
   status: 'Open for Software Engineering Opportunities'
 }
 
+const mockAnalytics = {
+  uniqueVisitors: 42,
+  countryCount: 5,
+  totalVisits: 120
+}
+
 beforeEach(() => {
   vi.clearAllMocks()
-  vi.mocked(axios.get).mockResolvedValue({ data: mockProfile })
+  vi.mocked(axios.get).mockImplementation((url: string) => {
+    if (url === '/api/analytics/public') {
+      return Promise.resolve({ data: mockAnalytics })
+    }
+    return Promise.resolve({ data: mockProfile })
+  })
 })
 
 describe('HomePage', () => {
@@ -48,9 +59,9 @@ describe('HomePage', () => {
     expect(screen.getByText(/Location: Espoo, Finland/i)).toBeInTheDocument()
   })
 
-  test('renders profile directly when provided via props without making an API call', () => {
+  test('renders profile directly when provided via props without making an API call for profile', () => {
     render(<HomePage profileData={mockProfile} />)
-    expect(axios.get).not.toHaveBeenCalled()
+    expect(axios.get).not.toHaveBeenCalledWith('/api/profile')
     expect(screen.getByText('Software developer with a Master of Laws degree.')).toBeInTheDocument()
     expect(screen.getByText(/Name: Kyösti Männistö/i)).toBeInTheDocument()
   })

@@ -49,19 +49,22 @@ test.describe('Admin Dashboard Flow', () => {
     await sharedPage.locator('input[name="description"]').fill(description)
     await sharedPage.locator('input[name="technologies"]').fill(technologies)
     await sharedPage.locator('input[name="githubUrl"]').fill(githubUrl)
-    await sharedPage.getByRole('button', { name: 'Add project' }).click()
+
+    await Promise.all([
+      sharedPage.waitForResponse(
+        (response) => response.url().includes('/api/projects') && response.status() === 201
+      ),
+      sharedPage.getByRole('button', { name: 'Add project' }).click()
+    ])
   })
 
   test('should display the created project on public projects page', async () => {
     await sharedPage.getByRole('link', { name: 'Projects', exact: true }).click()
-    const projectHeading = sharedPage.getByRole('heading', { name: title })
-    for (let i = 0; i < 10; i++) {
-      if (await projectHeading.isVisible()) {
-        break
-      }
-      await sharedPage.getByRole('button', { name: /next project/i }).click()
-    }
 
+    const projectSidebarButton = sharedPage.getByRole('button', { name: title })
+    await projectSidebarButton.click()
+
+    const projectHeading = sharedPage.getByRole('heading', { name: title })
     await expect(projectHeading).toBeVisible()
   })
 
