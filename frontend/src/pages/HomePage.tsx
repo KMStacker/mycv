@@ -21,6 +21,7 @@ import TerminalIcon from '@mui/icons-material/Terminal'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import PeopleIcon from '@mui/icons-material/People'
 import PublicIcon from '@mui/icons-material/Public'
+import AnalyticsIcon from '@mui/icons-material/Analytics'
 import SpaceConsoleHero from '../components/SpaceConsoleHero'
 
 interface ProfileData {
@@ -470,48 +471,73 @@ const HomePage = ({ profileData }: HomePageProps): JSX.Element => {
               githubUrl={profile?.githubUrl}
             />
           </Paper>
+
+          {analytics && (
+            <Paper
+              sx={{
+                p: 2.5,
+                bgcolor: 'var(--input-bg)',
+                backgroundImage: 'none !important',
+                backdropFilter: 'blur(5px)',
+                WebkitBackdropFilter: 'blur(5px)',
+                border: '1px solid var(--box-border)',
+                boxShadow: 'inset 0 0 15px rgba(0, 0, 0, 0.2)',
+                boxSizing: 'border-box'
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  color: 'var(--color-highlight-secondary)',
+                  fontFamily: '"Orbitron", sans-serif',
+                  fontWeight: 800,
+                  mb: 1.5,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1
+                }}
+              >
+                <AnalyticsIcon sx={{ fontSize: '1.2rem' }} /> VISITOR METRICS//
+              </Typography>
+
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1.5,
+                  flexWrap: 'wrap'
+                }}
+              >
+                <Chip
+                  icon={<PeopleIcon sx={{ color: 'var(--color-highlight-secondary) !important' }} />}
+                  label={`INDIVIDUAL USERS: ${analytics.uniqueVisitors}`}
+                  size="small"
+                  sx={{
+                    bgcolor: 'var(--bg-color)',
+                    color: 'var(--color-highlight-secondary)',
+                    border: '1px solid var(--box-border)',
+                    fontFamily: 'monospace',
+                    fontWeight: 'bold',
+                    letterSpacing: '0.5px'
+                  }}
+                />
+                <Chip
+                  icon={<PublicIcon sx={{ color: 'var(--color-highlight-primary) !important' }} />}
+                  label={`LOCATIONS: ${analytics.countryCount} COUNTRIES`}
+                  size="small"
+                  sx={{
+                    bgcolor: 'var(--bg-color)',
+                    color: 'var(--color-highlight-primary)',
+                    border: '1px solid var(--box-border)',
+                    fontFamily: 'monospace',
+                    fontWeight: 'bold',
+                    letterSpacing: '0.5px'
+                  }}
+                />
+              </Box>
+            </Paper>
+          )}
         </Box>
-        
-        {analytics && (
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 1.5,
-              flexWrap: 'wrap',
-              mb: 4,
-              marginTop: 2
-            }}
-          >
-            <Chip
-              icon={<PeopleIcon sx={{ color: 'var(--color-highlight-secondary) !important' }} />}
-              label={`INDIVIDUAL USERS: ${analytics.uniqueVisitors}`}
-              size="small"
-              sx={{
-                bgcolor: 'var(--input-bg)',
-                color: 'var(--color-highlight-secondary)',
-                border: '1px solid var(--box-border)',
-                fontFamily: 'monospace',
-                fontWeight: 'bold',
-                letterSpacing: '0.5px'
-              }}
-            />
-            <Chip
-              icon={<PublicIcon sx={{ color: 'var(--color-highlight-primary) !important' }} />}
-              label={`LOCATIONS: ${analytics.countryCount} COUNTRIES`}
-              size="small"
-              sx={{
-                bgcolor: 'var(--input-bg)',
-                color: 'var(--color-highlight-primary)',
-                border: '1px solid var(--box-border)',
-                fontFamily: 'monospace',
-                fontWeight: 'bold',
-                letterSpacing: '0.5px'
-              }}
-            />
-          </Box>
-        )}
       </Paper>
     </Container>
   )
