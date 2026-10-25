@@ -39,7 +39,7 @@ describe('HomePage', () => {
     expect(screen.getByText('SYS_TERMINAL_CONSOLE//')).toBeInTheDocument()
     expect(screen.getByText('READY')).toBeInTheDocument()
     expect(screen.getByText('> run welcome_msg.sh')).toBeInTheDocument()
-    expect(screen.getByText('Press RUN to execute script...')).toBeInTheDocument()
+    expect(screen.getByText('Press RUN to execute script:')).toBeInTheDocument()
   })
 
   test('fetches and renders about me section content', async () => {
