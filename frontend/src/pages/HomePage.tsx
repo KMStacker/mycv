@@ -231,33 +231,6 @@ const HomePage = ({ profileData }: HomePageProps): JSX.Element => {
                     }`
                   }}
                 />
-                <Button
-                  variant="outlined"
-                  size="small"
-                  startIcon={<PlayArrowIcon sx={{ fontSize: '0.9rem' }} />}
-                  onClick={handleExecuteStream}
-                  disabled={executionStatus === 'RUNNING'}
-                  sx={{
-                    color: 'var(--color-highlight-tertiary)',
-                    borderColor: 'var(--color-highlight-tertiary)',
-                    fontFamily: '"Orbitron", monospace',
-                    fontSize: '0.7rem',
-                    fontWeight: 700,
-                    letterSpacing: '1px',
-                    height: '24px',
-                    px: 1.5,
-                    '&:hover': {
-                      borderColor: 'var(--color-highlight-secondary)',
-                      bgcolor: 'rgba(255, 255, 255, 0.05)'
-                    },
-                    '&.Mui-disabled': {
-                      color: 'rgba(255, 255, 255, 0.3)',
-                      borderColor: 'rgba(255, 255, 255, 0.1)'
-                    }
-                  }}
-                >
-                  RUN
-                </Button>
               </Box>
             </Box>
 
@@ -283,17 +256,41 @@ const HomePage = ({ profileData }: HomePageProps): JSX.Element => {
               </Box>
 
               {executionStatus === 'IDLE' && (
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: 'var(--text-main)',
-                    opacity: 0.5,
-                    fontFamily: '"Courier New", Courier, monospace',
-                    fontStyle: 'italic'
-                  }}
-                >
-                  Press RUN to execute script...
-                </Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap', mt: 0.5 }}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: 'var(--text-main)',
+                      opacity: 0.7,
+                      fontFamily: '"Courier New", Courier, monospace',
+                      fontStyle: 'italic'
+                    }}
+                  >
+                    Press RUN to execute script:
+                  </Typography>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    startIcon={<PlayArrowIcon sx={{ fontSize: '0.85rem' }} />}
+                    onClick={handleExecuteStream}
+                    sx={{
+                      color: 'var(--color-highlight-tertiary)',
+                      borderColor: 'var(--color-highlight-tertiary)',
+                      fontFamily: '"Orbitron", monospace',
+                      fontSize: '0.7rem',
+                      fontWeight: 700,
+                      letterSpacing: '1px',
+                      height: '24px',
+                      px: 1.5,
+                      '&:hover': {
+                        borderColor: 'var(--color-highlight-secondary)',
+                        bgcolor: 'rgba(255, 255, 255, 0.05)'
+                      }
+                    }}
+                  >
+                    RUN
+                  </Button>
+                </Box>
               )}
 
               {executionStatus !== 'IDLE' && (
